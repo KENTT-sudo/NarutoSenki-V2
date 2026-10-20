@@ -1645,14 +1645,12 @@ bool CharacterBase::setGear(GearType type)
 	else
 		gearCost = 1000;
 
-	if (getGearArray().size() <= 2 && getCoin() >= gearCost)
+	if ((isPlayer() ? getGearArray().size() < 10 : getGearArray().size() < 3) && (isPlayer() || getCoin() >= gearCost))
 	{
 		getGearArray().push_back(type);
 
-		if (isPlayer())
-			getGameLayer()->getHudLayer()->offCoin(to_cstr(gearCost));
-		else
-			minusCoin(gearCost);
+		if (!isPlayer())
+            minusCoin(gearCost);
 
 		switch (type)
 		{
