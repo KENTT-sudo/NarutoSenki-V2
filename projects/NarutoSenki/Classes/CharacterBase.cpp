@@ -3815,7 +3815,9 @@ void CharacterBase::sAttack(ABType type)
 				}
 				runAction(_skill1Action);
 			}
-			_isCanSkill1 = true;
+			_isCanSkill1 = false;
+
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 			break;
 		case SKILL2:
 			if (_isCanSkill2)
@@ -3828,7 +3830,9 @@ void CharacterBase::sAttack(ABType type)
 				runAction(_skill2Action);
 			}
 
-			_isCanSkill2 = true;
+			_isCanSkill2 = false;
+
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 
 			break;
 		case SKILL3:
@@ -3841,7 +3845,9 @@ void CharacterBase::sAttack(ABType type)
 				}
 				runAction(_skill3Action);
 			}
-			_isCanSkill3 = true;
+			_isCanSkill3 = false;
+
+			scheduleOnce(schedule_selector(CharacterBase::enableSkill3), _sAttackCD3);
 			break;
 		default:
 			break;
