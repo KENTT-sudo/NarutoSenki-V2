@@ -20,7 +20,7 @@ android {
                     targets 'cocos2dcpp'
                     // arguments 'NDK_TOOLCHAIN_VERSION=clang'
                     arguments '-j' + Runtime.runtime.availableProcessors()
-                    arguments 'NDK_TOOLCHAIN_VERSION=4.9'
+                    arguments 'NDK_TOOLCHAIN_VERSION=clang'
                     // arguments 'APP_PLATFORM=android-'+PROP_APP_PLATFORM
 
                     def module_paths = [
