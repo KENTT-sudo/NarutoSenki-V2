@@ -5,6 +5,7 @@
 class NarutoClone : public Hero
 {
     bool _isTransformed = false;
+    std::string _originNAttackType;
 
     void changeAction() override
     {
