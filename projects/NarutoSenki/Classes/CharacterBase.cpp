@@ -2912,6 +2912,16 @@ void CharacterBase::setClone(int cloneTime)
 	clone->setNAttackValue(getNAttackValue());
 	clone->_defense = _defense;
 	clone->_level = _level;
+
+	if (clone->isClone() &&
+		(clone->getName() == HeroEnum::Naruto ||
+		 clone->getName() == HeroEnum::SageNaruto))
+	{
+		clone->_isCanSkill2 = false;
+		clone->_isCanOugis1 = clone->_level >= 2;
+		clone->_isCanOugis2 = clone->_level >= 4;
+	}
+
 	clone->setHPbar();
 	clone->_hpBar->getHPBAR()->setScaleX(clone->getHpPercent());
 
@@ -3708,7 +3718,9 @@ void CharacterBase::attack(ABType type)
 		sAttack(SKILL3);
 		break;
 	case OUGIS1:
-		if (isNotPlayer() || _isAI)
+		if ((isNotPlayer() || _isAI) &&
+			!(isClone() && (getName() == HeroEnum::Naruto ||
+					getName() == HeroEnum::SageNaruto)))
 		{
 			uint32_t ckr = getCKR();
 			if (ckr >= 15000)
@@ -3733,7 +3745,9 @@ void CharacterBase::attack(ABType type)
 		oAttack(OUGIS1);
 		break;
 	case OUGIS2:
-		if (isNotPlayer() || _isAI)
+		if ((isNotPlayer() || _isAI) &&
+			!(isClone() && (getName() == HeroEnum::Naruto ||
+					getName() == HeroEnum::SageNaruto)))
 		{
 			uint32_t ckr2 = getCKR2();
 			if (ckr2 >= 25000)
