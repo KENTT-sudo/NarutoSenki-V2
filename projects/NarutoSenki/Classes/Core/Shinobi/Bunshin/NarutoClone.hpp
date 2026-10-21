@@ -9,6 +9,121 @@ class NarutoClone : public Hero
 
     void changeAction() override
     {
+        if (getName() == HeroEnum::RikudoNaruto)
+            changeActionRikudo();
+        else if (getName() == HeroEnum::SageNaruto)
+            changeActionSage();
+        else
+            changeActionBase();
+    }
+
+    void resumeAction(float dt) override
+    {
+        if (getName() == HeroEnum::RikudoNaruto)
+            resumeActionRikudo(dt);
+        else if (getName() == HeroEnum::SageNaruto)
+            resumeActionSage(dt);
+        else
+            resumeActionBase(dt);
+    }
+
+    void changeActionSage()
+    {
+        _isTransformed = true;
+
+        _defense += 5000;
+        _isArmored = true;
+        hasArmorBroken = true;
+        _isOnlySkillLocked = true;
+
+        setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
+        setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+        setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+
+        setWalkSpeed(320);
+        _originSpeed = 320;
+    }
+
+    void resumeActionSage(float dt)
+    {
+        _isTransformed = false;
+
+        setIdleAction(createAnimation(idleArray, 5, true, false));
+        setWalkAction(createAnimation(walkArray, 10, true, false));
+        setNAttackAction(createAnimation(nattackArray, 10, false, true));
+
+        _isOnlySkillLocked = false;
+
+        setWalkSpeed(224);
+        _originSpeed = 224;
+        resetDefenseValue(5000);
+        _isArmored = false;
+        hasArmorBroken = false;
+
+        if (_state != State::DEAD)
+        {
+            _state = State::WALK;
+            setKnockDownAction(createAnimation(skillSPC5Array, 10, false, true));
+            knockDown();
+            setKnockDownAction(createAnimation(knockDownArray, 10, false, true));
+        }
+
+        CharacterBase::resumeAction(dt);
+    }
+
+    void changeActionRikudo()
+    {
+        _isTransformed = true;
+
+        _defense += 5000;
+        _isArmored = true;
+        hasArmorBroken = true;
+        _isOnlySkillLocked = true;
+
+        setIdleAction(createAnimation(skillSPC4Array, 5, true, false));
+        setWalkAction(createAnimation(skillSPC2Array, 10, true, false));
+        setNAttackAction(createAnimation(skillSPC3Array, 10, false, true));
+
+        setTempAttackValue1(getNAttackValue());
+        setNAttackValue(560);
+
+        setWalkSpeed(320);
+        _originSpeed = 320;
+    }
+
+    void resumeActionRikudo(float dt)
+    {
+        _isTransformed = false;
+
+        setIdleAction(createAnimation(idleArray, 5, true, false));
+        setWalkAction(createAnimation(walkArray, 10, true, false));
+        setNAttackAction(createAnimation(nattackArray, 10, false, true));
+
+        _isOnlySkillLocked = false;
+
+        setWalkSpeed(224);
+        _originSpeed = 224;
+
+        resetDefenseValue(5000);
+        _isArmored = false;
+        hasArmorBroken = false;
+
+        if (_state != State::DEAD)
+        {
+            _state = State::WALK;
+            idle();
+        }
+
+        if (hasTempAttackValue1())
+        {
+            setNAttackValue(getTempAttackValue1());
+            setTempAttackValue1(0);
+        }
+        CharacterBase::resumeAction(dt);
+    }
+
+    void changeActionBase()
+    {
         _isTransformed = true;
 
         setIdleAction(createAnimation(skillSPC1Array, 5, true, false));
@@ -33,7 +148,7 @@ class NarutoClone : public Hero
         _isArmored = true;
     }
 
-    void resumeAction(float dt) override
+    void resumeActionBase(float dt)
     {
         _isTransformed = false;
 
@@ -106,9 +221,9 @@ class NarutoClone : public Hero
 
         void perform() override
         {
-                if (notFindFlog(0))
+                if (notFindHero(0))
                 {
-                        if (notFindHero(0))
+                        if (notFindFlog(0))
                         {
                                 if (notFindTower(0))
                                 {
