@@ -122,6 +122,15 @@ void HPBar::loseHP(float percent)
 				}
 			}
 
+				if (_slayer != currentSlayer && _slayer->isClone() &&
+					(_slayer->getName() == HeroEnum::Naruto || _slayer->getName() == HeroEnum::SageNaruto) &&
+					_slayer->getLV() < 99)
+				{
+					float cloneExp = (_slayer->getName() == HeroEnum::Naruto) ? 12.0f : 10.0f;
+					_slayer->setEXP(_slayer->getEXP() + cloneExp);
+					_slayer->changeHPbar();
+				}
+
 			if (currentSlayer->isPlayer())
 			{
 				if (_delegate->getMaxHP() == 10000)
@@ -196,6 +205,15 @@ void HPBar::loseHP(float percent)
 						currentSlayer->addEXPWithBonus(500);
 						currentSlayer->changeHPbar();
 					}
+				}
+
+				if (_slayer != currentSlayer && _slayer->isClone() &&
+					(_slayer->getName() == HeroEnum::Naruto || _slayer->getName() == HeroEnum::SageNaruto) &&
+					_slayer->getLV() < 99)
+				{
+					float cloneExp = (_slayer->getName() == HeroEnum::Naruto) ? 625.0f : 500.0f;
+					_slayer->addEXPWithBonus(cloneExp);
+					_slayer->changeHPbar();
 				}
 
 				if (currentSlayer->isPlayer())

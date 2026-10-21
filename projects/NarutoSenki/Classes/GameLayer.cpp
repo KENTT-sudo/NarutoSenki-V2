@@ -465,6 +465,14 @@ void GameLayer::addFlogForTeam(Group group, const char *frogName)
 	{
 		flog = Flog::create();
 		flog->setID(frogName, Role::Flog, group);
+		// Comeback frog buff: HP x2, N-attack x2, walk speed /2
+		flog->setMaxHPValue(flog->getMaxHP() * 2, false);
+		flog->setHPValue(flog->getMaxHP(), false);
+		flog->setNAttackValue(flog->getNAttackValue() * 2);
+		uint32_t cbSpd = flog->getWalkSpeed() / 2;
+		if (cbSpd < 1) cbSpd = 1;
+		flog->setWalkSpeed(cbSpd);
+		flog->_originSpeed = cbSpd;
 		if (i < kFlogCount / 2)
 			mainPosY = (5.5 - i / 1.5) * 32;
 		else
@@ -490,14 +498,12 @@ void GameLayer::addSpecialFlogForTeam(Group group, const char *frogName)
 	flog->_mainPosY = 5.5 * 32;
 	flog->setPosition(Vec2(spawnX, flog->_mainPosY));
 
-	// Special-frog multipliers: HP x50, N-attack x50, walk speed /25 (min 1).
+	// Special-frog multipliers: HP x50, N-attack x50, walk speed = 5.
 	uint32_t newHP = flog->getMaxHP() * 50;
 	flog->setMaxHPValue(newHP, false);
 	flog->setHPValue(newHP, false);
 	flog->setNAttackValue(flog->getNAttackValue() * 50);
-	uint32_t newSpeed = flog->getWalkSpeed() / 25;
-	if (newSpeed < 1)
-		newSpeed = 1;
+	uint32_t newSpeed = 5;
 	flog->setWalkSpeed(newSpeed);
 	flog->_originSpeed = newSpeed;
 
