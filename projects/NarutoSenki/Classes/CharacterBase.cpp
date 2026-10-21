@@ -208,10 +208,23 @@ void CharacterBase::updateDataByLVOnly()
 		nAtkValue += 45;
 		_rebornTime += 5;
 	}
+	for (uint32_t lv = 7; lv <= _level; ++lv)
+	{
+		maxHP += 3000;
+		nAtkValue += 9;
+	}
+	if (_rebornTime > 20)
+		_rebornTime = 20;
 	setMaxHPValue(maxHP, false);
 	setNAttackValue(nAtkValue);
 }
 
+
+void CharacterBase::addEXPWithBonus(float baseGain)
+{
+	float mult = 1.0f + 0.5f * _level;
+	setEXP(getEXP() + baseGain * mult);
+}
 void CharacterBase::readData(CCArray *tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 {
 	CCDictionary *tmpDict;

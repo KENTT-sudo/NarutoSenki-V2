@@ -107,7 +107,7 @@ void HPBar::loseHP(float percent)
 					currentSlayer = _slayer;
 			}
 
-			if (currentSlayer->getLV() != 6)
+			if (currentSlayer->getLV() < 99)
 			{
 				if (currentSlayer->getName() == HeroEnum::Naruto ||
 					currentSlayer->getName() == HeroEnum::SageNaruto)
@@ -183,17 +183,17 @@ void HPBar::loseHP(float percent)
 			{
 				getGameLayer()->setReport(currentSlayer->getName(), kRoleTower, currentSlayer->getKillNum());
 
-				if (currentSlayer->getLV() != 6)
+				if (currentSlayer->getLV() < 99)
 				{
 					if (currentSlayer->getName() == HeroEnum::Naruto ||
 						currentSlayer->getName() == HeroEnum::SageNaruto)
 					{
-						currentSlayer->setEXP(currentSlayer->getEXP() + 625);
+						currentSlayer->addEXPWithBonus(625);
 						currentSlayer->changeHPbar();
 					}
 					else
 					{
-						currentSlayer->setEXP(currentSlayer->getEXP() + 500);
+						currentSlayer->addEXPWithBonus(500);
 						currentSlayer->changeHPbar();
 					}
 				}
@@ -240,9 +240,9 @@ void HPBar::loseHP(float percent)
 				if (currentSlayer->getGroup() == otherSlayer->getGroup() &&
 					currentSlayer->getName() != otherSlayer->getName())
 				{
-					if (otherSlayer->getLV() != 6)
+					if (otherSlayer->getLV() < 99)
 					{
-						otherSlayer->setEXP(otherSlayer->getEXP() + 250);
+						otherSlayer->addEXPWithBonus(250);
 						otherSlayer->changeHPbar();
 					}
 
@@ -428,7 +428,7 @@ void HPBar::loseHP(float percent)
 					getGameLayer()->setTotalKills(newTime);
 				}
 
-				if (currentSlayer->getLV() != 6)
+				if (currentSlayer->getLV() < 99)
 				{
 					if (currentSlayer->getName() == HeroEnum::Naruto ||
 						currentSlayer->getName() == HeroEnum::SageNaruto)
@@ -488,7 +488,7 @@ void HPBar::loseHP(float percent)
 				if (currentSlayer->getGroup() == otherSlayer->getGroup() &&
 					currentSlayer->getName() != otherSlayer->getName())
 				{
-					if (otherSlayer->getLV() != 6)
+					if (otherSlayer->getLV() < 99)
 					{
 						otherSlayer->setEXP(otherSlayer->getEXP() + 25);
 						otherSlayer->changeHPbar();

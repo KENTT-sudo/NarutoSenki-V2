@@ -382,10 +382,18 @@ public:
 			setNAttackValue(getNAttackValue() + 45);
 			_rebornTime += 5;
 		}
-
+		else if (_level >= 6 && _level < 99 && _exp >= _level * 500)
+		{
+			_level++;
+			setMaxHPValue(getMaxHP() + 3000);
+			setNAttackValue(getNAttackValue() + 9);
+		}
+		if (_rebornTime > 20)
+			_rebornTime = 20;
 		if (_hpBar)
 		{
-			auto frame = getSpriteFrame("hp_bottom{}.png", _level);
+			uint32_t frame_lv = _level > 6 ? 6 : _level;
+			auto frame = getSpriteFrame("hp_bottom{}.png", frame_lv);
 			_hpBar->getHPBottom()->setDisplayFrame(frame);
 		}
 	}

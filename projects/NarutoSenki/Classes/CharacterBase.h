@@ -469,6 +469,7 @@ public:
 	// UI
 	void updateHpBar();
 	void updateDataByLVOnly();
+	void addEXPWithBonus(float baseGain);
 	void lockSkill4Button() {
 		if (isPlayer())
 			getGameLayer()->getHudLayer()->skill4Button->setLock();
