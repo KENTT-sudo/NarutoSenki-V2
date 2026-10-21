@@ -25,7 +25,7 @@ public:
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTargetAndIgnoreOriginY();
 
-			if (abs(sp.x) > 128 || abs(sp.y) > 16)
+			if (abs(sp.x) > 128)
 			{
 				moveDirection = sp.getNormalized();
 				walk(moveDirection);

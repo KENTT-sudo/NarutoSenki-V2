@@ -578,9 +578,9 @@ void GameLayer::initTower()
 		// Apply tower HP multipliers after original HP settings.
 		uint32_t towerHPMultiplier = 1;
 		if (name == "KonohaCenter" || name == "AkatsukiCenter")
-			towerHPMultiplier = 20;
-		else if (name == "KonohaTower1" || name == "AkatsukiTower1")
 			towerHPMultiplier = 10;
+		else if (name == "KonohaTower1" || name == "AkatsukiTower1")
+			towerHPMultiplier = 7;
 		else if (name == "KonohaTower2" || name == "AkatsukiTower2")
 			towerHPMultiplier = 5;
 
