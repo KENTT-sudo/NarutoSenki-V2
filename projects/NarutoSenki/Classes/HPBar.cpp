@@ -1,5 +1,6 @@
 #include "Core/Hero.hpp"
 #include "HudLayer.h"
+#include <cstring>
 
 bool HPBar::init(const char *szImage)
 {
@@ -36,29 +37,42 @@ void HPBar::changeBar(const char *szImage)
 
 void HPBar::loseHP(float percent)
 {
-	if (getGameLayer()->_isHardCoreGame)
-	{
-		auto gardTower = getGameLayer()->playerGroup == Group::Konoha
-							 ? TowerEnum::AkatsukiCenter
-							 : TowerEnum::KonohaCenter;
-		if (_delegate->getName() == gardTower)
-		{
-			if (not getGameLayer()->_hasSpawnedGuardian && percent <= 0.8)
-			{
-				getGameLayer()->initGard();
-			}
-		}
+	std::string towerName = _delegate->getName();
+	auto layer = getGameLayer();
+	const char *gardTower = layer->playerGroup == Group::Konoha
+						 ? TowerEnum::AkatsukiCenter
+						 : TowerEnum::KonohaCenter;
 
-		if (getGameLayer()->_hasSpawnedGuardian)
+	if (percent <= 0.8f && !towerName.empty()
+		&& !layer->hasGuardianSpawnedFor(towerName))
+	{
+		int level = 0;
+		if (towerName == "KonohaTower2" || towerName == "AkatsukiTower2")
+			level = 10;
+		else if (towerName == "KonohaTower1" || towerName == "AkatsukiTower1")
+			level = 50;
+		else if (towerName == "KonohaCenter" || towerName == "AkatsukiCenter")
+			level = 75;
+
+		if (level > 0)
 		{
-			auto _slayer = _delegate->_slayer;
-			if (_slayer)
-			{
-				if (_delegate->getName() == gardTower)
-					_slayer->isHurtingTower = true;
-				else
-					_slayer->isHurtingTower = false;
-			}
+			Group guardianGroup = (towerName.compare(0, 6, "Konoha") == 0) ? Group::Akatsuki : Group::Konoha;
+			layer->initGard(level, _delegate->getPosition(), guardianGroup, towerName.c_str());
+			layer->markGuardianSpawnedFor(towerName);
+			if (towerName == "KonohaCenter" || towerName == "AkatsukiCenter")
+				layer->_hasSpawnedGuardian = true;
+		}
+	}
+
+	if (layer->_hasSpawnedGuardian)
+	{
+		auto _slayer = _delegate->_slayer;
+		if (_slayer)
+		{
+			if (!towerName.empty() && towerName == gardTower)
+				_slayer->isHurtingTower = true;
+			else
+				_slayer->isHurtingTower = false;
 		}
 	}
 
@@ -405,6 +419,8 @@ void HPBar::loseHP(float percent)
 					int teamKills = to_int(getGameLayer()->getHudLayer()->AkaLabel->getString()) + 1;
 					getGameLayer()->getHudLayer()->AkaLabel->setString(to_cstr(teamKills));
 				}
+
+				getGameLayer()->updateComebackState();
 
 				if (currentSlayer->isNotGuardian())
 				{

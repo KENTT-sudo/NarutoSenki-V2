@@ -107,6 +107,8 @@ GameLayer::GameLayer()
 	_isShacking = false;
 	_isSurrender = false;
 	_hasSpawnedGuardian = false;
+	_comebackLosingTeam = 0;
+	_comebackExtraWaveEnabled = false;
 
 	_isStarted = false;
 	_isExiting = false;
@@ -214,27 +216,18 @@ void GameLayer::initTileMap()
 	addChild(currentMap, kMapOrder);
 }
 
-void GameLayer::initGard()
+void GameLayer::initGard(int level, Vec2 spawnPos, Group guardianGroup, const char *homeTowerName)
 {
 	setRand();
 	int index = random(2);
 	auto guardianName = index == 0 ? GuardianEnum::Roshi : GuardianEnum::Han;
-	auto guardianGroup = playerGroup == Group::Konoha ? Group::Akatsuki : Group::Konoha;
 	auto guardian = Provider::create(guardianName, Role::Com, guardianGroup);
 
-	if (playerGroup == Group::Konoha)
-	{
-		guardian->setPosition(Vec2(2800, 80));
-		guardian->setSpawnPoint(Vec2(2800, 80));
-	}
-	else
-	{
-		guardian->setPosition(Vec2(272, 80));
-		guardian->setSpawnPoint(Vec2(272, 80));
-	}
+	guardian->setPosition(spawnPos);
+	guardian->setSpawnPoint(spawnPos);
 
 	addChild(guardian, -guardian->getPositionY());
-	guardian->setLV(6);
+	guardian->setLV(level);
 	guardian->setHPbar();
 	guardian->setShadows();
 	guardian->setCharId(_CharacterArray.size() + 1);
@@ -242,12 +235,27 @@ void GameLayer::initGard()
 	guardian->idle();
 	guardian->setSkillEffect("smk");
 
+	if (homeTowerName != nullptr)
+	{
+		guardian->setHomeTowerName(homeTowerName);
+	}
+
 	guardian->doAI();
 
 	_CharacterArray.push_back(guardian);
 	_hudLayer->addMapIcon();
 
 	_hasSpawnedGuardian = true;
+}
+
+bool GameLayer::hasGuardianSpawnedFor(const std::string &towerName) const
+{
+	return _guardiansSpawnedByTower.find(towerName) != _guardiansSpawnedByTower.end();
+}
+
+void GameLayer::markGuardianSpawnedFor(const std::string &towerName)
+{
+	_guardiansSpawnedByTower.insert(towerName);
 }
 
 void GameLayer::initHeros()
@@ -401,6 +409,12 @@ void GameLayer::addFlog(float dt)
 	auto KonohaFlogName = kName;
 	auto AkatsukiFlogName = aName;
 
+	// Comeback: losing team's new frogs use their level-3 frog.
+	if (_comebackLosingTeam == 1)
+		KonohaFlogName = FlogEnum::KakashiFlog;
+	else if (_comebackLosingTeam == 2)
+		AkatsukiFlogName = FlogEnum::ObitoFlog;
+
 	int i;
 	Flog *flog;
 	float mainPosY;
@@ -437,6 +451,73 @@ void GameLayer::addFlog(float dt)
 		_AkatsukiFlogArray.push_back(flog);
 		addChild(flog, -flog->getPositionY());
 	}
+}
+
+void GameLayer::addFlogForTeam(Group group, const char *frogName)
+{
+	int i;
+	Flog *flog;
+	float mainPosY;
+	float spawnX = (group == Group::Konoha) ? (13 * 32) : (83 * 32);
+	for (i = 0; i < kFlogCount; i++)
+	{
+		flog = Flog::create();
+		flog->setID(frogName, Role::Flog, group);
+		if (i < kFlogCount / 2)
+			mainPosY = (5.5 - i / 1.5) * 32;
+		else
+			mainPosY = (3.5 - i / 1.5) * 32;
+		flog->_mainPosY = mainPosY;
+		flog->setPosition(Vec2(spawnX, flog->_mainPosY));
+		flog->setHPbar();
+		flog->idle();
+		flog->doAI();
+		if (group == Group::Konoha)
+			_KonohaFlogArray.push_back(flog);
+		else
+			_AkatsukiFlogArray.push_back(flog);
+		addChild(flog, -int(flog->getPositionY()));
+	}
+}
+
+void GameLayer::addSpecialFlogForTeam(Group group, const char *frogName)
+{
+	Flog *flog = Flog::create();
+	flog->setID(frogName, Role::Flog, group);
+	float spawnX = (group == Group::Konoha) ? (13 * 32) : (83 * 32);
+	flog->_mainPosY = 5.5 * 32;
+	flog->setPosition(Vec2(spawnX, flog->_mainPosY));
+
+	// Special-frog multipliers: HP x50, N-attack x50, walk speed /25 (min 1).
+	uint32_t newHP = flog->getMaxHP() * 50;
+	flog->setMaxHPValue(newHP, false);
+	flog->setHPValue(newHP, false);
+	flog->setNAttackValue(flog->getNAttackValue() * 50);
+	uint32_t newSpeed = flog->getWalkSpeed() / 25;
+	if (newSpeed < 1)
+		newSpeed = 1;
+	flog->setWalkSpeed(newSpeed);
+	flog->_originSpeed = newSpeed;
+
+	flog->setHPbar();
+	flog->idle();
+	flog->doAI();
+	if (group == Group::Konoha)
+		_KonohaFlogArray.push_back(flog);
+	else
+		_AkatsukiFlogArray.push_back(flog);
+	addChild(flog, -int(flog->getPositionY()));
+}
+
+void GameLayer::addBonusFlog(float dt)
+{
+	this->unschedule(schedule_selector(GameLayer::addBonusFlog));
+	_comebackExtraWaveEnabled = false;
+
+	if (_comebackLosingTeam == 1)
+		addFlogForTeam(Group::Konoha, FlogEnum::KakashiFlog);
+	else if (_comebackLosingTeam == 2)
+		addFlogForTeam(Group::Akatsuki, FlogEnum::ObitoFlog);
 }
 
 void GameLayer::initTower()
@@ -489,6 +570,22 @@ void GameLayer::initTower()
 			{
 				tower->setMaxHPValue(50000, false);
 			}
+			tower->setHPValue(tower->getMaxHP(), false);
+		}
+
+		// Apply tower HP multipliers after original HP settings.
+		uint32_t towerHPMultiplier = 1;
+		if (name == "KonohaCenter" || name == "AkatsukiCenter")
+			towerHPMultiplier = 20;
+		else if (name == "KonohaTower1" || name == "AkatsukiTower1")
+			towerHPMultiplier = 10;
+		else if (name == "KonohaTower2" || name == "AkatsukiTower2")
+			towerHPMultiplier = 5;
+
+		if (towerHPMultiplier > 1)
+		{
+			uint32_t originalHP = tower->getMaxHP();
+			tower->setMaxHPValue(originalHP * towerHPMultiplier, false);
 			tower->setHPValue(tower->getMaxHP(), false);
 		}
 		tower->setHPbar();
@@ -587,6 +684,38 @@ void GameLayer::removeOugisMark(int type)
 	}
 }
 
+void GameLayer::updateComebackState()
+{
+    if (!_hudLayer || !_hudLayer->KonoLabel || !_hudLayer->AkaLabel)
+        return;
+
+    int playerTeamKills = to_int(_hudLayer->KonoLabel->getString());
+    int enemyTeamKills = to_int(_hudLayer->AkaLabel->getString());
+
+    int konohaKills = playerGroup == Group::Konoha
+        ? playerTeamKills : enemyTeamKills;
+    int akatsukiKills = playerGroup == Group::Akatsuki
+        ? playerTeamKills : enemyTeamKills;
+
+    if (konohaKills < akatsukiKills)
+        _comebackLosingTeam = 1;
+    else if (akatsukiKills < konohaKills)
+        _comebackLosingTeam = 2;
+    else
+        _comebackLosingTeam = 0;
+
+    // Arm one bonus wave when both teams are already at level 3
+    // and one team is losing. The latch prevents duplicate scheduling.
+    if (!_comebackExtraWaveEnabled
+        && _comebackLosingTeam != 0
+        && kName == FlogEnum::KakashiFlog
+        && aName == FlogEnum::ObitoFlog)
+    {
+        _comebackExtraWaveEnabled = true;
+        this->scheduleOnce(schedule_selector(GameLayer::addBonusFlog), 15.0f);
+    }
+}
+
 void GameLayer::checkTower()
 {
 	int konohaTowerCount = 0;
@@ -620,6 +749,18 @@ void GameLayer::checkTower()
 	{
 		kName = FlogEnum::KakashiFlog;
 		aEXPBound = 100;
+	}
+
+	// One-time special frog for the side that lost its second tower.
+	if (konohaTowerCount == 2 && !_specialFlogSpawnedKonoha)
+	{
+		_specialFlogSpawnedKonoha = true;
+		addSpecialFlogForTeam(Group::Konoha, FlogEnum::KakashiFlog);
+	}
+	if (akatsukiTowerCount == 2 && !_specialFlogSpawnedAkatsuki)
+	{
+		_specialFlogSpawnedAkatsuki = true;
+		addSpecialFlogForTeam(Group::Akatsuki, FlogEnum::ObitoFlog);
 	}
 
 	for (auto hero : getGameLayer()->_CharacterArray)

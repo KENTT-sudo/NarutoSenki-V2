@@ -40,7 +40,7 @@ class Guardian : public Hero
 			if (isFreeState())
 			{
 				bool isTurn = false;
-				auto gardTower = getGameLayer()->getGuardianGroup();
+				auto gardTower = !_homeTowerName.empty() ? _homeTowerName.c_str() : getGameLayer()->getGuardianGroup();
 
 				for (auto targetTower : getGameLayer()->_TowerArray)
 				{
@@ -106,6 +106,10 @@ class Guardian : public Hero
 		setIdleAction(createAnimation(skillSPC3Array, 5, true, false));
 	}
 
+	void setHomeTowerName(const char *name) { _homeTowerName = (name ? name : ""); }
+	const char *getHomeTowerName() const { return _homeTowerName.c_str(); }
+
 private:
+	std::string _homeTowerName;
 	string _originNAttackType;
 };

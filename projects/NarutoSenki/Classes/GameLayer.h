@@ -4,6 +4,8 @@
 #include "PauseLayer.h"
 #include "Data/UnitData.h"
 #include <memory>
+#include <set>
+#include <string>
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "glfw3.h"
@@ -73,6 +75,10 @@ public:
 
 	bool _isAttackButtonRelease;
 	bool _hasSpawnedGuardian;
+    int _comebackLosingTeam = 0;
+    bool _comebackExtraWaveEnabled = false;
+    bool _specialFlogSpawnedKonoha = false;
+    bool _specialFlogSpawnedAkatsuki = false;
 	// int _guardianNum;
 	vector<Flog *> _KonohaFlogArray;
 	vector<Flog *> _AkatsukiFlogArray;
@@ -102,7 +108,9 @@ public:
 	void initHeros();
 	void initFlogs();
 	void initTower();
-	void initGard();
+	void initGard(int level, Vec2 spawnPos, Group guardianGroup, const char *homeTowerName);
+	bool hasGuardianSpawnedFor(const std::string &towerName) const;
+	void markGuardianSpawnedFor(const std::string &towerName);
 	void initEffects();
 
 	void updateViewPoint(float dt);
@@ -111,6 +119,10 @@ public:
 	Hero *addHero(const HeroData &data, int charId);
 	Hero *addHero(const string &name, Role role, Group group, Vec2 spawnPoint, int charNo);
 	void addFlog(float dt);
+    void updateComebackState();
+    void addBonusFlog(float dt);
+    void addFlogForTeam(Group group, const char *frogName);
+void addSpecialFlogForTeam(Group group, const char *frogName);
 
 	void attackButtonClick(ABType type);
 	void gearButtonClick(GearType type);
@@ -203,6 +215,8 @@ private:
 	bool isHUDInitialized = false;
 	bool is4V4Mode = false;
 	vector<OnHUDInitializedCallback> callbackssList;
+
+	std::set<std::string> _guardiansSpawnedByTower;
 
 	std::unique_ptr<BattleRuntimeSystem> _battleRuntimeSystem;
 	std::unique_ptr<SpawnSystem> _spawnSystem;

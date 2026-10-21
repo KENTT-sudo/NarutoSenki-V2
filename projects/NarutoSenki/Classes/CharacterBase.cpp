@@ -1607,17 +1607,6 @@ void CharacterBase::setItem(ABType type)
 		}
 	}
 	_isCanItem1 = false;
-	if (isPlayer())
-	{
-		if (_isAI)
-		{
-			getGameLayer()->getHudLayer()->offCoin(to_cstr(50));
-		}
-	}
-	else
-	{
-		minusCoin(50);
-	}
 	scheduleOnce(schedule_selector(Hero::enableItem1), 5.0f);
 
 	if (_hpBar)
@@ -5044,7 +5033,7 @@ bool CharacterBase::stepBack2()
 // [For AI] 检查角色是否需要使用【拉面】回血，若血量低于界限，则返回true
 bool CharacterBase::checkRetri()
 {
-	if (_isCanItem1 && getCoin() >= 50)
+	if (_isCanItem1)
 	{
 		if (getGameLayer()->_isHardCoreGame)
 		{
