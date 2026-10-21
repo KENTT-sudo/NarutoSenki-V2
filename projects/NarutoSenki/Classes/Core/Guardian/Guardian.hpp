@@ -3,6 +3,7 @@
 
 class Guardian : public Hero
 {
+public:
 	void perform() override
 	{
 		if (!findTargetEnemy(Role::Hero, true))

@@ -237,7 +237,8 @@ void GameLayer::initGard(int level, Vec2 spawnPos, Group guardianGroup, const ch
 
 	if (homeTowerName != nullptr)
 	{
-		if (auto guardianPtr = dynamic_cast<Guardian *>(guardian))
+		Guardian *guardianPtr = dynamic_cast<Guardian *>(guardian);
+		if (guardianPtr != nullptr)
 			guardianPtr->setHomeTowerName(homeTowerName);
 	}
 
