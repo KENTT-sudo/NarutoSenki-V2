@@ -56,7 +56,7 @@ void HPBar::loseHP(float percent)
 
 		if (level > 0)
 		{
-			Group guardianGroup = (towerName.compare(0, 6, "Konoha") == 0) ? Group::Akatsuki : Group::Konoha;
+			Group guardianGroup = (towerName.compare(0, 6, "Konoha") == 0) ? Group::Konoha : Group::Akatsuki;
 			layer->initGard(level, _delegate->getPosition(), guardianGroup, towerName.c_str());
 			layer->markGuardianSpawnedFor(towerName);
 			if (towerName == "KonohaCenter" || towerName == "AkatsukiCenter")
