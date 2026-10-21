@@ -167,7 +167,7 @@ bool ActionButton::isCanClick()
 			{
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(false) && !_isLock && !_delegate->ougisLayer)
 				{
-					_delegate->costCKR(15000, false);
+					// Chakra cost removed for Skill 4.
 					return true;
 				}
 			}
@@ -175,7 +175,7 @@ bool ActionButton::isCanClick()
 			{
 				if (_delegate->getSkillFinish() && _delegate->getOugisEnable(true) && !_isLock && !_delegate->ougisLayer)
 				{
-					_delegate->costCKR(25000, true);
+					// Chakra cost removed for Skill 5.
 					return true;
 				}
 			}
