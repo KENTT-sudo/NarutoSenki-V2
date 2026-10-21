@@ -153,15 +153,6 @@
 			<f>RikudoNaruto_Skill02_002</f>
 			<f>RikudoNaruto_Skill02_003</f>
 			<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
 		</frame>
 	</action>
 	<action name="skill03">

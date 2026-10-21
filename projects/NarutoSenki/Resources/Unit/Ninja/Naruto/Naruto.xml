@@ -155,15 +155,6 @@
 			<f>Naruto_Skill02_04</f>
 			<e type="setDelay">10</e>
 			<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
-<e type="setClone">10</e>
 		</frame>
 	</action>
 

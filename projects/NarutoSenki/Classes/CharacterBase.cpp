@@ -2946,7 +2946,12 @@ void CharacterBase::setClone(int cloneTime)
 	getGameLayer()->addChild(clone, -clone->getPositionY());
 	clone->doAI();
 
-	if (cloneTime > 0)
+	// Keep Naruto and Sage Naruto Skill 2 clones until defeated.
+	// Preserve cloneTime for Rikudo Naruto's special Kurama setup.
+	if (cloneTime > 0 &&
+		getName() != HeroEnum::Naruto &&
+		getName() != HeroEnum::SageNaruto &&
+           !(getName() == HeroEnum::RikudoNaruto && cloneTime == 10))
 	{
 		clone->scheduleOnce(schedule_selector(Hero::removeClone), cloneTime);
 	}
