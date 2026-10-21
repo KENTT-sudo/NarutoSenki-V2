@@ -181,7 +181,7 @@ bool ActionButton::isCanClick()
 			}
 			else
 			{
-				if (getTimeCount() == 0 && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
+				if ((_abType == SKILL1 || _abType == SKILL2 || _abType == SKILL3 || getTimeCount() == 0) && _delegate->getSkillFinish() && !_isLock && !_delegate->ougisLayer)
 				{
 					return true;
 				}
@@ -203,7 +203,7 @@ void ActionButton::beganAnimation(bool isLock)
 	CCTime::gettimeofdayCocos2d(&timeVal, 0);
 	_clickTime = timeVal.tv_sec + timeVal.tv_usec / 1000;
 
-	if (markSprite && _abType != OUGIS1 && _abType != OUGIS2)
+	if (markSprite && _abType != OUGIS1 && _abType != OUGIS2 && _abType != SKILL1 && _abType != SKILL2 && _abType != SKILL3)
 	{
 		if (!_freezeAction || _isColdChanged)
 		{
