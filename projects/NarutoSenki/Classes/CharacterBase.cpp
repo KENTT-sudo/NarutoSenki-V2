@@ -525,7 +525,7 @@ void CharacterBase::acceptAttack(Ref *object)
 								{
 									attacker->_master->stopAllActions();
 									attacker->_master->runAction(createAnimation(attacker->_master->skillSPC1Array, 10, false, false));
-									attacker->_master->scheduleOnce(schedule_selector(CharacterBase::resumeAction), 15);
+									// Possession ends only on possessed hero death (no timer)
 									attacker->_master->_isArmored = true;
 									attacker->_master->_isInvincible = false;
 								}
@@ -544,7 +544,6 @@ void CharacterBase::acceptAttack(Ref *object)
 								if (isPlayer())
 								{
 									doAI();
-									getGameLayer()->getHudLayer()->_isAllButtonLocked = true;
 								}
 								changeGroup();
 							}
@@ -4404,6 +4403,23 @@ void CharacterBase::knockDown()
 void CharacterBase::dead()
 {
 	getGameModeHandler()->onCharacterDead(this);
+
+	// Ino's death kills the possessed hero (linked death)
+	if (getName() == HeroEnum::Ino)
+	{
+		CharacterBase *possessedTarget = nullptr;
+		for (auto hero : getGameLayer()->_CharacterArray)
+		{
+			if (hero->_isControlled && hero->_controller == this && hero->_state != State::DEAD)
+			{
+				possessedTarget = hero;
+				break;
+			}
+		}
+		if (possessedTarget)
+			possessedTarget->dead();
+	}
+
 	CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "acceptAttack");
 
 	_isHitOne = false;

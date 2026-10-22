@@ -182,14 +182,9 @@ class Ino : public Hero
 				}
 				if (isPlayer())
 				{
-					// auto controlledHero = getGameLayer()->currentPlayer;
-					// controlledHero->_isAI = true;
-					// controlledHero->doAI();
-					// _isControlled = false;
-
-					// getGameLayer()->currentPlayer = this;
 					getGameLayer()->controlChar = nullptr;
-					// getGameLayer()->getHudLayer()->updateSkillButtons();
+					getGameLayer()->currentPlayer = this;
+					getGameLayer()->getHudLayer()->updateSkillButtons();
 				}
 				if (_state != State::DEAD)
 				{
