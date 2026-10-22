@@ -13,7 +13,7 @@ class Minato : public Hero
 
 		if (getHpPercent() < 0.3f)
 		{
-			if (_isCanSkill1)
+			if (_isCanSkill1) { if (isPlayer() && getGameLayer()->getHudLayer()->skill1Button) { getGameLayer()->getHudLayer()->skill1Button->_isLock = false; getGameLayer()->getHudLayer()->skill1Button->unLock(); }
 			{
 				bool isMark = false;
 				if (hasMonsterArrayAny())
@@ -187,7 +187,7 @@ class Minato : public Hero
 		}
 		else
 		{
-			if (_isCanSkill1)
+			if (_isCanSkill1) { if (isPlayer() && getGameLayer()->getHudLayer()->skill1Button) { getGameLayer()->getHudLayer()->skill1Button->_isLock = false; getGameLayer()->getHudLayer()->skill1Button->unLock(); }
 			{
 				bool isMark = false;
 				if (hasMonsterArrayAny())
