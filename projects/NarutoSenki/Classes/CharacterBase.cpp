@@ -225,6 +225,23 @@ void CharacterBase::addEXPWithBonus(float baseGain)
 	float mult = 1.0f + 0.5f * _level;
 	setEXP(getEXP() + baseGain * mult);
 }
+
+void CharacterBase::breakStealth()
+{
+		return;
+
+	setOpacity(255);
+	setVisible(true);
+	_isVisable = true;
+
+	if (_hpBar)
+		_hpBar->setVisible(true);
+	if (_shadow)
+		_shadow->setVisible(true);
+
+	if (getWalkSpeed() == 320)
+		setWalkSpeed(224);
+}
 void CharacterBase::readData(CCArray *tmpData, string &attackType, uint32_t &attackValue, int &attackRangeX, int &attackRangeY, uint32_t &cooldown, int &combatPoint)
 {
 	CCDictionary *tmpDict;
@@ -1749,7 +1766,8 @@ void CharacterBase::useGear(GearType type)
 				_isVisable = false;
 
 				setSound("Audio/Effect/suzou_effect.ogg");
-				schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
+				if (!isPlayer())
+					schedule(schedule_selector(CharacterBase::disableGear1), 3.0f);
 			}
 		}
 	}
@@ -3670,6 +3688,10 @@ void CharacterBase::attack(ABType type)
 		if (!getGameLayer()->getSkillFinish() && !_isOnlySkillLocked)
 			return;
 	}
+
+	// Player stealth breaks when using any skill (not basic attack)
+	if (isPlayer() && type != NAttack)
+		breakStealth();
 
 	switch (type)
 	{
