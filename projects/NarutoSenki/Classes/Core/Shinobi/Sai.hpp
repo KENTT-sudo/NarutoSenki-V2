@@ -3,6 +3,11 @@
 
 class Sai : public Hero
 {
+    void dead() override
+    {
+        unschedule(schedule_selector(CharacterBase::setMonPer));
+        Hero::dead();
+    }
 	void perform() override
 	{
 		_mainTarget = nullptr;
