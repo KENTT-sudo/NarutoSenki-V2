@@ -38,6 +38,7 @@
 #include "Shinobi/Tobi.hpp"
 #include "Shinobi/Tobirama.hpp"
 #include "Shinobi/Tsunade.hpp"
+#include "Shinobi/MadaraMusou.hpp"
 
 // Bunshin
 #include "Shinobi/Bunshin/NarutoClone.hpp"
