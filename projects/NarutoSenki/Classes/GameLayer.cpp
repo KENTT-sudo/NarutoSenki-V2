@@ -211,10 +211,7 @@ void GameLayer::initTileMap()
 		CCMessageBox("Not found any map", "[Error] Not found any map");
 		return;
 	}
-	if (getGameModeHandler()->getHerosArray().size() == 15) // Boss Mode (10 vs 5)
-        mapId = 1;
-    else
-        mapId = random(mapCount) + 1;
+	mapId = random(mapCount) + 1;
 	currentMap = TMXTiledMap::create(GetMapPath(mapId));
 	addChild(currentMap, kMapOrder);
 }
