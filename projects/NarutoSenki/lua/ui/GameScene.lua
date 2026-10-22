@@ -63,8 +63,9 @@ end
 function GameScene:onLogoClick()
     self.cheats = self.cheats + 1
 
-    -- Easter Egg: Swap to girl logo after 5 taps
-    if self.cheats == 5 then
+    -- Easter Egg: Swap to girl logo after 5 taps (using >= in case cheats skips 5)
+    if self.cheats >= 5 and self.cheats ~= 7 and not self.girlUnlocked then
+        self.girlUnlocked = true
         -- Change the logo image to the girl
         local girl_logo = cc.Sprite:create("logo_girl.png")
         if girl_logo then
