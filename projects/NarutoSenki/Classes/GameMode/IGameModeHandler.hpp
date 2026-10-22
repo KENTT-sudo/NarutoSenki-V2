@@ -60,6 +60,12 @@ class IGameModeHandler
 	friend class GameModeLayer;
 	friend class SelectLayer;
 
+	bool _forcePlayerGroup = false;
+	Group _forcedPlayerGroup = Group::Konoha;
+public:
+	void forcePlayerGroup(Group g) { _forcePlayerGroup = true; _forcedPlayerGroup = g; }
+private:
+
 private:protected:
 private:vector<HeroData> heroDataVector;
 	// map
@@ -201,9 +207,10 @@ protected:
 		enemyCount = enemyCount > kMaxCharCount ? kMaxCharCount : enemyCount;
 		setRand();
 		int team = random(2);
-		// TODO: Support custom player group
-		// playerGroup = playerGroup == nullptr ? (team > 0 ? Group::Konoha : Group::Akatsuki) : playerGroup;
-		playerGroup = team > 0 ? Group::Akatsuki : Group::Konoha;
+		if (_forcePlayerGroup)
+			playerGroup = _forcedPlayerGroup;
+		else
+			playerGroup = team > 0 ? Group::Akatsuki : Group::Konoha;
 		this->gd.playerGroup = playerGroup;
 		this->playerGroup = playerGroup;
 		uint8_t totalCount = playerCount + enemyCount;

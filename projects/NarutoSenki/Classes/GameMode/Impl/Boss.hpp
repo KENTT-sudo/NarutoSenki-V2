@@ -13,15 +13,16 @@ public:
 
 	void onInitHeros()
 	{
-		initHeros(3, 1); // TEST: 3v1 Boss Mode (should work) // Original 3v1 Boss Mode
-		if (getHerosArray().size() >= 5)
+		// Force player team = Konoha (enemies will be Akatsuki)
+		forcePlayerGroup(Group::Konoha);
+
+		initHeros(3, 1); // 3v1 Boss Mode
+
+		// Force last hero (enemy boss) = Madara
+		if (getHerosArray().size() >= 1)
 		{
-			size_t start = getHerosArray().size() - 5;
-			setHeroName(start, HeroEnum::MadaraMusou);
-			setHeroName(start + 1, HeroEnum::Itachi);
-			setHeroName(start + 2, HeroEnum::Sasuke);
-			setHeroName(start + 3, HeroEnum::Tobi);
-			setHeroName(start + 4, HeroEnum::Pain);
+			size_t lastIdx = getHerosArray().size() - 1;
+			setHeroName(lastIdx, HeroEnum::MadaraMusou);
 		}
 	}
 
