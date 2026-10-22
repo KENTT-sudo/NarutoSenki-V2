@@ -92,6 +92,8 @@ class SageNarutoClone : public Hero
 
 	void perform() override
 	{
+		checkRetri();  // auto-use free Ramen at low HP
+
 		if (notFindHero(0))
 		{
 			if (notFindFlog(0))

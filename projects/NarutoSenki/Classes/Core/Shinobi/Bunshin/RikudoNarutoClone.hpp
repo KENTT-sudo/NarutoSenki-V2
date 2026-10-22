@@ -1,10 +1,13 @@
 #pragma once
 #include "Hero.hpp"
+#include "Kuchiyose/Kurama.hpp"
 
 class RikudoNarutoClone : public Hero
 {
 	void perform() override
 	{
+		checkRetri();  // auto-use free Ramen at low HP
+
 		if (notFindHero(0))
 		{
 			if (notFindFlog(0))
@@ -72,4 +75,16 @@ class RikudoNarutoClone : public Hero
 
 		stepOn();
 	}
+
+    Hero *createClone(int cloneTime) override
+    {
+        auto clone = createCloneHero<Kurama>(SummonEnum::Kurama);
+        clone->setDEF(5000);
+        clone->_isArmored = true;
+        clone->setWalkSpeed(320);
+        clone->_originSpeed = 320;
+        clone->hasArmorBroken = true;
+        return clone;
+    }
+
 };

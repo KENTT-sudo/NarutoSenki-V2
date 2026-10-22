@@ -1641,7 +1641,7 @@ void CharacterBase::setItem(ABType type)
 
 	if (_hpBar)
 	{
-		uint32_t hpRestore = 3000 + gearRecoverValue;
+		uint32_t hpRestore = (uint32_t)max(3000.0f, getMaxHP() * 0.3f) + gearRecoverValue;
 		increaseHpAndUpdateUI(hpRestore);
 
 		if (!_isHealing && !_healItemEffect)
@@ -5068,6 +5068,14 @@ bool CharacterBase::stepBack2()
 // [For AI] 检查角色是否需要使用【拉面】回血，若血量低于界限，则返回true
 bool CharacterBase::checkRetri()
 {
+	// Clones auto-use free Ramen at 30% HP, then stay in combat
+	if (isClone())
+	{
+		if (getHpPercent() < 0.3f && _isCanItem1 && !_isHealing)
+			setItem(Item1);
+		return false;
+	}
+
 	if (_isCanItem1)
 	{
 		if (getGameLayer()->_isHardCoreGame)
