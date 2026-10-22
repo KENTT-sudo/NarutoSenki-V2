@@ -236,7 +236,7 @@ void Monster::setAI(float dt)
 			if (_mainTarget->isPlayerOrCom())
 			{
 				stopAllActions();
-				dealloc();
+				dieCleanup();
 			}
 		}
 		else if (charName == "Traps")
@@ -299,8 +299,9 @@ void Monster::setAI(float dt)
 	}
 }
 
-void Monster::dealloc()
+void Monster::dieCleanup()
 {
+	if (_state == State::DEAD) return; // Prevent double cleanup
 	stopAllActions();
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setState(State::DEAD);
@@ -419,7 +420,7 @@ void Monster::setResume()
 {
 	if (getSecMaster())
 	{
-		getSecMaster()->dealloc();
+		getSecMaster()->dieCleanup();
 	}
 	else
 	{
