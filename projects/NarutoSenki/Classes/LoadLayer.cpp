@@ -289,6 +289,7 @@ void LoadLayer::unloadAllCharsIMG(const vector<Hero *> &players)
 	vector<string> unloadVector(players.size());
 	for (auto player : players)
 	{
+		if (player == nullptr) continue;  // Skip null pointers
 		auto name = player->getName();
 		if (std::find(unloadVector.begin(), unloadVector.end(), name) == unloadVector.end())
 		{
