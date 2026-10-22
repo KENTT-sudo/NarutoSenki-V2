@@ -185,7 +185,7 @@ class Sai : public Hero
 			{
 				_hpBar->setPositionY(120);
 			}
-			schedule(schedule_selector(Sai::setMonPer), 0.5f);
+			schedule(schedule_selector(CharacterBase::setMonPer), 0.5f);
 		}
 	}
 
@@ -217,7 +217,7 @@ class Sai : public Hero
 				_hpBar->setPositionY(getHeight());
 			}
 
-			unschedule(schedule_selector(Sai::setMonPer));
+			unschedule(schedule_selector(CharacterBase::setMonPer));
 		}
 		CharacterBase::resumeAction(dt);
 	}
@@ -249,7 +249,7 @@ class Sai : public Hero
 			{
 				_hpBar->setPositionY(getHeight());
 			}
-			unschedule(schedule_selector(Sai::setMonPer));
+			unschedule(schedule_selector(CharacterBase::setMonPer));
 		}
 
 		_skillChangeBuffValue = 0;
