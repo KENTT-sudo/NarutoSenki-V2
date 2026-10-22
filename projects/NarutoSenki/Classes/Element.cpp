@@ -236,7 +236,7 @@ void Monster::setAI(float dt)
 			if (_mainTarget->isPlayerOrCom())
 			{
 				stopAllActions();
-				dieCleanup();
+				dealloc();
 			}
 		}
 		else if (charName == "Traps")
@@ -299,10 +299,14 @@ void Monster::setAI(float dt)
 	}
 }
 
-void Monster::dieCleanup()
+void Monster::dealloc()
 {
-	// Allow traps to clean up even if not in DEAD state
-	if (_state == State::DEAD && getName() != SkillEnum::HiraishinMark) return;
+	// Fix Sai's crash: Just remove summons instantly without running death logic
+	if (getName() == "Mouse" || getName() == "Lion" || getName() == "Snake") {
+		removeFromParent();
+		return;
+	}
+
 	stopAllActions();
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setState(State::DEAD);
@@ -421,7 +425,7 @@ void Monster::setResume()
 {
 	if (getSecMaster())
 	{
-		static_cast<Monster*>(getSecMaster())->dieCleanup();
+		static_cast<Monster*>(getSecMaster())->dealloc();
 	}
 	else
 	{
