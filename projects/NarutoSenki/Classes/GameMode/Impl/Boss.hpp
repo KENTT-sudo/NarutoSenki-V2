@@ -16,7 +16,7 @@ public:
 		initHeros(10, 5);
 		if (getHerosArray().size() >= 5)
 		{
-			int start = getHerosArray().size() - 5;
+			size_t start = getHerosArray().size() - 5;
 			setHeroName(start, HeroEnum::MadaraMusou);
 			setHeroName(start + 1, HeroEnum::Itachi);
 			setHeroName(start + 2, HeroEnum::Sasuke);

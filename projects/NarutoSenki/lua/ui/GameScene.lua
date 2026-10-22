@@ -72,8 +72,8 @@ function GameScene:onLogoClick()
             self.logoMenu:addChild(girl_logo)
         end
         -- Unlock Boss Mode permanently
-        cc.UserDefault:getInstance():setBoolForKey("boss_mode_unlocked", true)
-        cc.UserDefault:getInstance():flush()
+        cc.UserDefault:sharedUserDefault():setBoolForKey("boss_mode_unlocked", true)
+        cc.UserDefault:sharedUserDefault():flush()
     end
 
     if self.cheats == 7 then
