@@ -12,19 +12,23 @@ public:
 	}
 
 	void onInitHeros()
-	{
-		// Force player team = Konoha (enemies will be Akatsuki)
-		forcePlayerGroup(Group::Konoha);
+    {
+        // Force player team = Konoha
+        forcePlayerGroup(Group::Konoha);
 
-		initHeros(3, 1); // 3v1 Boss Mode
+        // Spawn 3 players and 1 enemy
+        initHeros(3, 1);
 
-		// Force last hero (enemy boss) = Madara
-		if (getHerosArray().size() >= 1)
-		{
-			size_t lastIdx = getHerosArray().size() - 1;
-			setHeroName(lastIdx, HeroEnum::Tsunade);
-		}
-	}
+        // Force the 1 enemy to be Tsunade (for now, until Madara is fixed)
+        if (getHerosArray().size() >= 4)
+        {
+            // The first 3 are Konoha players, the 4th is Akatsuki boss
+            setHeroName(0, HeroEnum::Naruto);   // Player 1
+            setHeroName(1, HeroEnum::Sasuke);   // Player 2
+            setHeroName(2, HeroEnum::Sakura);   // Player 3
+            setHeroName(3, HeroEnum::Tsunade);  // Enemy Boss
+        }
+    }
 
 	void onGameStart()
 	{
