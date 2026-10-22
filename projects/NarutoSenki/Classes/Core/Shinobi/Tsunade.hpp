@@ -4,6 +4,17 @@
 
 class Tsunade : public Hero
 {
+	bool canSummonSlug()
+	{
+		int alive = 0;
+		for (auto c : getGameLayer()->_CharacterArray)
+		{
+			if (c->getMaster() == this && c->getName() == SummonEnum::Slug && c->getState() != State::DEAD)
+				alive++;
+		}
+		return alive < 2;
+	}
+
 	void perform() override
 	{
 		_mainTarget = nullptr;
@@ -36,8 +47,7 @@ class Tsunade : public Hero
 						attack(OUGIS2);
 					}
 					return;
-				}
-				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored && _monsterArray.size() < 10)
+				}else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored && canSummonSlug())
 				{
 					changeSide(sp);
 					attack(SKILL3);

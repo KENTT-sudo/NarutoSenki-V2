@@ -3003,6 +3003,7 @@ void CharacterBase::setClone(int cloneTime)
 	if (cloneTime > 0 &&
 		getName() != HeroEnum::Naruto &&
 		getName() != HeroEnum::SageNaruto &&
+		getName() != HeroEnum::Tsunade &&
            !(getName() == HeroEnum::RikudoNaruto && cloneTime == 10))
 	{
 		clone->scheduleOnce(schedule_selector(Hero::removeClone), cloneTime);
