@@ -301,7 +301,8 @@ void Monster::setAI(float dt)
 
 void Monster::dieCleanup()
 {
-	if (_state == State::DEAD) return; // Prevent double cleanup
+	// Allow traps to clean up even if not in DEAD state
+	if (_state == State::DEAD && getName() != SkillEnum::HiraishinMark) return;
 	stopAllActions();
 	unschedule(schedule_selector(CharacterBase::setAI));
 	setState(State::DEAD);
