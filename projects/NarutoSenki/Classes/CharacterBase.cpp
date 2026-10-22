@@ -537,6 +537,7 @@ void CharacterBase::acceptAttack(Ref *object)
 									// Set controlled character to player
 									getGameLayer()->controlChar = this;
 									getGameLayer()->currentPlayer = this;
+									getGameLayer()->setSkillFinish(true);
 									getGameLayer()->getHudLayer()->updateSkillButtons();
 									idle();
 								}

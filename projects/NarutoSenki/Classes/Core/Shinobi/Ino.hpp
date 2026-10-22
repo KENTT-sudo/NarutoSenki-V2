@@ -184,6 +184,7 @@ class Ino : public Hero
 				{
 					getGameLayer()->controlChar = nullptr;
 					getGameLayer()->currentPlayer = this;
+					getGameLayer()->setSkillFinish(true);
 					getGameLayer()->getHudLayer()->updateSkillButtons();
 				}
 				if (_state != State::DEAD)
