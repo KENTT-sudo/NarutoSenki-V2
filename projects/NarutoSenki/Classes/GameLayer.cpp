@@ -876,6 +876,8 @@ void GameLayer::onPause()
 	visit();
 	snapshoot->end();
 
+        this->pauseSchedulerAndActions();
+        this->setVisible(false);
 	Scene *pscene = Scene::create();
 	PauseLayer *layer = PauseLayer::create(snapshoot);
 	pscene->addChild(layer);
@@ -918,6 +920,8 @@ void GameLayer::onGear()
 	visit();
 	snapshoot->end();
 
+        this->pauseSchedulerAndActions();
+        this->setVisible(false);
 	Scene *pscene = Scene::create();
 	GearLayer *layer = GearLayer::create(snapshoot);
 	_gearLayer = layer;
@@ -952,6 +956,8 @@ void GameLayer::onGameOver(bool isWin)
 
 	getGameModeHandler()->Internal_GameOver();
 
+        this->pauseSchedulerAndActions();
+        this->setVisible(false);
 	Scene *pscene = Scene::create();
 	GameOver *layer = GameOver::create(snapshoot);
 	layer->setWin(isWin);

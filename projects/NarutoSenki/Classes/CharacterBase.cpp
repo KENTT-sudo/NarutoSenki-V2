@@ -3135,6 +3135,7 @@ void CharacterBase::setMon(const string &monName)
 	{
 		monster->setSkillEffect("smk");
 		_monsterArray.push_back(monster);
+		if (monster->_hpBar) monster->_hpBar->setVisible(false); // Hide HP bar for summons
 		monster->doAI();
 	}
 	else if (monName == "PaperRain" ||
@@ -3238,6 +3239,7 @@ void CharacterBase::setMon(const string &monName)
 	{
 		monster->setSkillEffect("smk");
 		_monsterArray.push_back(monster);
+		if (monster->_hpBar) monster->_hpBar->setVisible(false); // Hide HP bar for summons
 		monster->doAI();
 		if (getGroup() != getGameLayer()->currentPlayer->getGroup())
 		{
@@ -3396,6 +3398,7 @@ void CharacterBase::setMon(const string &monName)
 	else
 	{
 		_monsterArray.push_back(monster);
+		if (monster->_hpBar) monster->_hpBar->setVisible(false); // Hide HP bar for summons
 		monster->doAI();
 	}
 
