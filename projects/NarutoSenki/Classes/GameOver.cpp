@@ -11,9 +11,8 @@ GameOver::GameOver()
 
 GameOver::~GameOver()
 {
-	AnimationCache::purgeSharedAnimationCache();
-	SpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();
-	TextureCache::sharedTextureCache()->removeUnusedTextures();
+	// NOTE: Removed aggressive cache purging — it caused crashes during scene transitions
+	// because other scenes still referenced textures being freed. Cleanup happens elsewhere.
 }
 
 bool GameOver::init(RenderTexture *snapshoot)
