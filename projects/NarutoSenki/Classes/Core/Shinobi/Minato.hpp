@@ -20,7 +20,7 @@ class Minato : public Hero
 				{
 					for (auto mo : _monsterArray)
 					{
-						if (mo->getName() == SkillEnum::HiraishinMark)
+						if (mo->getName() == SkillEnum::HiraishinMark) { if (isPlayer() && getGameLayer()->getHudLayer()->skill1Button) getGameLayer()->getHudLayer()->skill1Button->unLock(); }
 						{
 							if (isKonohaGroup() && mo->getPositionX() < getPositionX())
 							{

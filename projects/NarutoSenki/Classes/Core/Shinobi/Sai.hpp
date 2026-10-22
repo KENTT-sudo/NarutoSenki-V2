@@ -57,7 +57,7 @@ class Sai : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored)
+				else if (false && _isCanSkill2 && _mainTarget->getDEF() < 5000 && !_isArmored) // TEMP DISABLED
 				{
 					changeSide(sp);
 					attack(SKILL2);
