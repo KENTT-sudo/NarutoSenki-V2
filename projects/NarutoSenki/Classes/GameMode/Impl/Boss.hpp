@@ -22,7 +22,7 @@ public:
 		if (getHerosArray().size() >= 1)
 		{
 			size_t lastIdx = getHerosArray().size() - 1;
-			setHeroName(lastIdx, HeroEnum::MadaraMusou);
+			setHeroName(lastIdx, HeroEnum::Tsunade);
 		}
 	}
 
