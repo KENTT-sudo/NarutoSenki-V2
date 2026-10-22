@@ -4867,7 +4867,7 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 			target->_isVisable && !target->_isInvincible)
 		{
 			// float gardZone
-			bool found = isGuardian()
+			bool found = (isGuardian() || target->isClone())
 							 ? true
 							 : (getGameLayer()->playerGroup == Group::Konoha
 								 ? target->getPositionX() >= 81 * 32

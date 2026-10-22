@@ -1,9 +1,12 @@
 #pragma once
 #include "Hero.hpp"
+#include "Kuchiyose/Kurama.hpp"
 #include <cstdlib>
 
 class NarutoClone : public Hero
 {
+    float _kuramaCooldown = 0;
+
     bool _isTransformed = false;
     std::string _originNAttackType;
 
@@ -249,7 +252,15 @@ class NarutoClone : public Hero
                                 if (isFreeState())
                                 {
                                         changeSide(sp);
-                                        attackRandomSkill();
+                                        if (getName() == HeroEnum::RikudoNaruto && _kuramaCooldown <= 0 && _isCanSkill2)
+                                        {
+                                                attack(SKILL2);
+                                                _kuramaCooldown = 30.0f;
+                                        }
+                                        else
+                                        {
+                                                attackRandomSkill();
+                                        }
                                 }
                         }
 
@@ -258,4 +269,19 @@ class NarutoClone : public Hero
 
                 stepOn();
         }
+
+    Hero *createClone(int cloneTime) override
+    {
+        // Only Rikudo Naruto clone summons Kurama
+        if (getName() != HeroEnum::RikudoNaruto)
+            return nullptr;
+        auto clone = createCloneHero<Kurama>(SummonEnum::Kurama);
+        clone->setDEF(5000);
+        clone->_isArmored = true;
+        clone->setWalkSpeed(320);
+        clone->_originSpeed = 320;
+        clone->hasArmorBroken = true;
+        return clone;
+    }
+
 };

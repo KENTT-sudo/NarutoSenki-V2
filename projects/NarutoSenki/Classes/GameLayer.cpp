@@ -1034,6 +1034,10 @@ void GameLayer::checkBackgroundMusic(float dt)
 
 void GameLayer::setOugis(CharacterBase *sender)
 {
+	// Skip cut-scene for cloned units to avoid spam
+	if (sender && sender->isClone())
+		return;
+
 	if (!_hudLayer->ougisLayer)
 	{
 		ougisChar = sender;

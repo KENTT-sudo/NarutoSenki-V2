@@ -1,9 +1,12 @@
 #pragma once
 #include "Hero.hpp"
+#include "Kuchiyose/Kurama.hpp"
 #include <cstdlib>
 
 class SageNarutoClone : public Hero
 {
+    float _kuramaCooldown = 0;
+
     bool _isTransformed = false;
 
     void changeAction() override
@@ -94,6 +97,10 @@ class SageNarutoClone : public Hero
 	{
 		checkRetri();  // auto-use free Ramen at low HP
 
+		if (getName() == HeroEnum::RikudoNaruto)
+			_kuramaCooldown -= 0.1f;
+		if (_kuramaCooldown < 0) _kuramaCooldown = 0;
+
 		if (notFindHero(0))
 		{
 			if (notFindFlog(0))
@@ -109,6 +116,27 @@ class SageNarutoClone : public Hero
 		{
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
+
+			// Rikudo Naruto clone auto-summons Kurama every 30s
+			if (getName() == HeroEnum::RikudoNaruto && _kuramaCooldown <= 0
+				&& !_isControlled && !_isArmored && getGameLayer()->_isOugis2Game
+				&& !_mainTarget->isTower() && !_mainTarget->isFlog() && abs(sp.x) < 128)
+			{
+				if (_isCanSkill2)
+				{
+					changeSide(sp);
+					attack(SKILL2);
+					_kuramaCooldown = 30.0f;
+					return;
+				}
+				else if (_isCanOugis2)
+				{
+					changeSide(sp);
+					attack(OUGIS2);
+					_kuramaCooldown = 30.0f;
+					return;
+				}
+			}
 
 			if (_mainTarget->isTower() ||
 				_mainTarget->isFlog())
@@ -159,4 +187,19 @@ class SageNarutoClone : public Hero
 
 		stepOn();
 	}
+
+    Hero *createClone(int cloneTime) override
+    {
+        // Only Rikudo Naruto clone summons Kurama
+        if (getName() != HeroEnum::RikudoNaruto)
+            return nullptr;
+        auto clone = createCloneHero<Kurama>(SummonEnum::Kurama);
+        clone->setDEF(5000);
+        clone->_isArmored = true;
+        clone->setWalkSpeed(320);
+        clone->_originSpeed = 320;
+        clone->hasArmorBroken = true;
+        return clone;
+    }
+
 };
