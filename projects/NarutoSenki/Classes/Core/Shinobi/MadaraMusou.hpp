@@ -3,6 +3,12 @@
 
 class MadaraMusou : public Hero
 {
+    void setID(const string &name, Role role, Group group) override
+    {
+        Hero::setID(name, role, group);
+        setScale(2.5f);  // 2.5x bigger than normal hero
+    }
+
     void perform() override
     {
         // Madara is stationary — never walks, always attacks

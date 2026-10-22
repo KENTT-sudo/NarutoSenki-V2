@@ -3,317 +3,317 @@
   <dict>
     <key>frames</key>
     <dict>
-      <key>MadaraMusou_010</key>
-      <dict>
-        <key>frame</key>
-        <string>{{0,0},{162,179}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{162,179}}</string>
-        <key>sourceSize</key>
-        <string>{269,183}</string>
-      </dict>
-      <key>MadaraMusou_012</key>
-      <dict>
-        <key>frame</key>
-        <string>{{162,0},{163,145}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{163,145}}</string>
-        <key>sourceSize</key>
-        <string>{403,145}</string>
-      </dict>
-      <key>MadaraMusou_013</key>
-      <dict>
-        <key>frame</key>
-        <string>{{325,0},{168,141}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{168,141}}</string>
-        <key>sourceSize</key>
-        <string>{403,145}</string>
-      </dict>
-      <key>MadaraMusou_004</key>
-      <dict>
-        <key>frame</key>
-        <string>{{493,0},{104,118}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{104,118}}</string>
-        <key>sourceSize</key>
-        <string>{267,118}</string>
-      </dict>
       <key>MadaraMusou_001</key>
       <dict>
         <key>frame</key>
-        <string>{{597,0},{185,115}}</string>
+        <string>{{0,0},{370,231}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{-12,-27}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{185,115}}</string>
+        <string>{{0,0},{370,231}}</string>
         <key>sourceSize</key>
-        <string>{185,115}</string>
+        <string>{370,231}</string>
       </dict>
       <key>MadaraMusou_002</key>
       <dict>
         <key>frame</key>
-        <string>{{782,0},{185,115}}</string>
+        <string>{{370,0},{370,231}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{-12,-27}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{185,115}}</string>
+        <string>{{0,0},{370,231}}</string>
         <key>sourceSize</key>
-        <string>{185,115}</string>
+        <string>{370,231}</string>
       </dict>
       <key>MadaraMusou_003</key>
       <dict>
         <key>frame</key>
-        <string>{{967,0},{185,115}}</string>
+        <string>{{740,0},{370,231}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{-12,-27}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{185,115}}</string>
+        <string>{{0,0},{370,231}}</string>
         <key>sourceSize</key>
-        <string>{185,115}</string>
+        <string>{370,231}</string>
       </dict>
-      <key>MadaraMusou1_004</key>
+      <key>MadaraMusou_004</key>
       <dict>
         <key>frame</key>
-        <string>{{1152,0},{94,115}}</string>
+        <string>{{1110,0},{535,237}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{139,-6}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{94,115}}</string>
+        <string>{{0,0},{535,237}}</string>
         <key>sourceSize</key>
-        <string>{101,117}</string>
-      </dict>
-      <key>MadaraMusou1_005</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1246,0},{100,115}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{100,115}}</string>
-        <key>sourceSize</key>
-        <string>{101,117}</string>
-      </dict>
-      <key>MadaraMusou1_001</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1346,0},{100,114}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{100,114}}</string>
-        <key>sourceSize</key>
-        <string>{101,117}</string>
-      </dict>
-      <key>MadaraMusou1_003</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1446,0},{101,114}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{101,114}}</string>
-        <key>sourceSize</key>
-        <string>{101,117}</string>
-      </dict>
-      <key>MadaraMusou1_002</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1547,0},{100,113}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{100,113}}</string>
-        <key>sourceSize</key>
-        <string>{101,117}</string>
-      </dict>
-      <key>MadaraMusou_008</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1647,0},{109,111}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{109,111}}</string>
-        <key>sourceSize</key>
-        <string>{269,183}</string>
-      </dict>
-      <key>MadaraMusou_016</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1756,0},{91,109}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{91,109}}</string>
-        <key>sourceSize</key>
-        <string>{91,109}</string>
-      </dict>
-      <key>MadaraMusou_017</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1847,0},{91,109}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{91,109}}</string>
-        <key>sourceSize</key>
-        <string>{91,109}</string>
-      </dict>
-      <key>MadaraMusou_018</key>
-      <dict>
-        <key>frame</key>
-        <string>{{1938,0},{91,109}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{91,109}}</string>
-        <key>sourceSize</key>
-        <string>{91,109}</string>
-      </dict>
-      <key>MadaraMusou_019</key>
-      <dict>
-        <key>frame</key>
-        <string>{{0,179},{91,109}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{91,109}}</string>
-        <key>sourceSize</key>
-        <string>{91,109}</string>
+        <string>{535,237}</string>
       </dict>
       <key>MadaraMusou_005</key>
       <dict>
         <key>frame</key>
-        <string>{{91,179},{112,108}}</string>
+        <string>{{0,237},{535,237}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{139,-6}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{112,108}}</string>
+        <string>{{0,0},{535,237}}</string>
         <key>sourceSize</key>
-        <string>{267,118}</string>
-      </dict>
-      <key>MadaraMusou_015</key>
-      <dict>
-        <key>frame</key>
-        <string>{{203,179},{403,108}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{403,108}}</string>
-        <key>sourceSize</key>
-        <string>{403,145}</string>
-      </dict>
-      <key>MadaraMusou_011</key>
-      <dict>
-        <key>frame</key>
-        <string>{{606,179},{252,107}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{252,107}}</string>
-        <key>sourceSize</key>
-        <string>{269,183}</string>
-      </dict>
-      <key>MadaraMusou_009</key>
-      <dict>
-        <key>frame</key>
-        <string>{{858,179},{125,106}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{125,106}}</string>
-        <key>sourceSize</key>
-        <string>{269,183}</string>
-      </dict>
-      <key>MadaraMusou_014</key>
-      <dict>
-        <key>frame</key>
-        <string>{{983,179},{291,103}}</string>
-        <key>offset</key>
-        <string>{0,0}</string>
-        <key>rotated</key>
-        <false/>
-        <key>sourceColorRect</key>
-        <string>{{0,0},{291,103}}</string>
-        <key>sourceSize</key>
-        <string>{403,145}</string>
+        <string>{535,237}</string>
       </dict>
       <key>MadaraMusou_006</key>
       <dict>
         <key>frame</key>
-        <string>{{1274,179},{241,97}}</string>
+        <string>{{535,237},{535,237}}</string>
         <key>offset</key>
-        <string>{0,0}</string>
+        <string>{139,-6}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{241,97}}</string>
+        <string>{{0,0},{535,237}}</string>
         <key>sourceSize</key>
-        <string>{267,118}</string>
+        <string>{535,237}</string>
       </dict>
       <key>MadaraMusou_007</key>
       <dict>
         <key>frame</key>
-        <string>{{1515,179},{234,97}}</string>
+        <string>{{1070,237},{535,237}}</string>
+        <key>offset</key>
+        <string>{139,-6}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{535,237}}</string>
+        <key>sourceSize</key>
+        <string>{535,237}</string>
+      </dict>
+      <key>MadaraMusou_008</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,474},{538,367}}</string>
+        <key>offset</key>
+        <string>{136,-13}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{538,367}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_009</key>
+      <dict>
+        <key>frame</key>
+        <string>{{538,474},{538,367}}</string>
+        <key>offset</key>
+        <string>{136,-13}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{538,367}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_010</key>
+      <dict>
+        <key>frame</key>
+        <string>{{1076,474},{538,367}}</string>
+        <key>offset</key>
+        <string>{136,-13}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{538,367}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_011</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,841},{538,367}}</string>
+        <key>offset</key>
+        <string>{136,-13}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{538,367}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_012</key>
+      <dict>
+        <key>frame</key>
+        <string>{{538,841},{807,290}}</string>
+        <key>offset</key>
+        <string>{0,-44}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{807,290}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_013</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,1208},{807,290}}</string>
+        <key>offset</key>
+        <string>{0,-42}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{807,290}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_014</key>
+      <dict>
+        <key>frame</key>
+        <string>{{807,1208},{807,290}}</string>
+        <key>offset</key>
+        <string>{0,-42}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{807,290}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_015</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,1498},{807,290}}</string>
+        <key>offset</key>
+        <string>{0,-42}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{807,290}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_016</key>
+      <dict>
+        <key>frame</key>
+        <string>{{807,1498},{182,218}}</string>
+        <key>offset</key>
+        <string>{5,-80}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{182,218}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_017</key>
+      <dict>
+        <key>frame</key>
+        <string>{{989,1498},{182,218}}</string>
+        <key>offset</key>
+        <string>{5,-80}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{182,218}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_018</key>
+      <dict>
+        <key>frame</key>
+        <string>{{1171,1498},{182,218}}</string>
+        <key>offset</key>
+        <string>{5,-80}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{182,218}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou_019</key>
+      <dict>
+        <key>frame</key>
+        <string>{{1353,1498},{182,218}}</string>
+        <key>offset</key>
+        <string>{5,-80}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{182,218}}</string>
+        <key>sourceSize</key>
+        <string>{538,367}</string>
+      </dict>
+      <key>MadaraMusou1_001</key>
+      <dict>
+        <key>frame</key>
+        <string>{{1535,1498},{202,234}}</string>
         <key>offset</key>
         <string>{0,0}</string>
         <key>rotated</key>
         <false/>
         <key>sourceColorRect</key>
-        <string>{{0,0},{234,97}}</string>
+        <string>{{0,0},{202,234}}</string>
         <key>sourceSize</key>
-        <string>{267,118}</string>
+        <string>{202,234}</string>
+      </dict>
+      <key>MadaraMusou1_002</key>
+      <dict>
+        <key>frame</key>
+        <string>{{1737,1498},{202,234}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{202,234}}</string>
+        <key>sourceSize</key>
+        <string>{202,234}</string>
+      </dict>
+      <key>MadaraMusou1_003</key>
+      <dict>
+        <key>frame</key>
+        <string>{{0,1788},{202,234}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{202,234}}</string>
+        <key>sourceSize</key>
+        <string>{202,234}</string>
+      </dict>
+      <key>MadaraMusou1_004</key>
+      <dict>
+        <key>frame</key>
+        <string>{{202,1788},{202,234}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{202,234}}</string>
+        <key>sourceSize</key>
+        <string>{202,234}</string>
+      </dict>
+      <key>MadaraMusou1_005</key>
+      <dict>
+        <key>frame</key>
+        <string>{{404,1788},{202,234}}</string>
+        <key>offset</key>
+        <string>{0,0}</string>
+        <key>rotated</key>
+        <false/>
+        <key>sourceColorRect</key>
+        <string>{{0,0},{202,234}}</string>
+        <key>sourceSize</key>
+        <string>{202,234}</string>
       </dict>
     </dict>
     <key>metadata</key>
@@ -323,7 +323,7 @@
       <key>realTextureFileName</key>
       <string>MadaraMusou.png</string>
       <key>size</key>
-      <string>{2048,512}</string>
+      <string>{2048,2048}</string>
       <key>textureFileName</key>
       <string>MadaraMusou.png</string>
     </dict>
