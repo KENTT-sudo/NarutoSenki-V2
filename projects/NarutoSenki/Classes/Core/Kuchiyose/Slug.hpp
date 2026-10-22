@@ -1,5 +1,6 @@
 #pragma once
 #include "Hero.hpp"
+#include <cmath>
 
 class Slug : public Hero
 {
@@ -7,17 +8,18 @@ class Slug : public Hero
 	{
 		// 1. Find follow target (Tsunade, else nearest allied hero)
 		CharacterBase *followTarget = nullptr;
-		if (_master && _master->_state != State::DEAD)
+		if (_master && _master->getState() != State::DEAD)
 			followTarget = _master;
 		else
 		{
 			float bestDist = 999999;
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (hero == this || hero->_state == State::DEAD) continue;
+				if (hero == this || hero->getState() == State::DEAD) continue;
 				if (hero->getGroup() != getGroup()) continue;
 				if (hero->isFlog() || hero->isTower()) continue;
-				float d = (hero->getPosition() - getPosition()).length();
+				Vec2 diff = hero->getPosition() - getPosition();
+				float d = sqrt(diff.x * diff.x + diff.y * diff.y);
 				if (d < bestDist) { bestDist = d; followTarget = hero; }
 			}
 		}
@@ -38,7 +40,7 @@ class Slug : public Hero
 			bool shouldHeal = false;
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (hero->_state == State::DEAD || hero->getGroup() != getGroup()) continue;
+				if (hero->getState() == State::DEAD || hero->getGroup() != getGroup()) continue;
 				if (!hero->isPlayerOrCom()) continue;
 				Vec2 d = hero->getPosition() - getPosition();
 				if (abs(d.x) <= 128 && abs(d.y) <= 128 && hero->getHpPercent() < 0.8f)
