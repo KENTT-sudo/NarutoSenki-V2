@@ -189,7 +189,11 @@ void GameModeLayer::selectMode(GameMode mode)
 		}
 		else if (mode != GameMode::RandomDeathmatch && mode != GameMode::Clone)
 		{
-			enableCustomSelect = Cheats >= kMaxCheats;
+			if (mode == GameMode::Boss) {
+            enableCustomSelect = true;
+        } else {
+            enableCustomSelect = Cheats >= kMaxCheats;
+        }
 		}
 
 		// call lua global function StartMenu.enterSelectLayer

@@ -13,11 +13,11 @@ public:
 
 	void onInitHeros()
 	{
-		initHeros(4, 5); // TEMP: 9 total, fits current UI
+		initHeros(3, 1); // TEST: 3v1 Boss Mode (should work) // Original 3v1 Boss Mode
 		if (getHerosArray().size() >= 5)
 		{
 			size_t start = getHerosArray().size() - 5;
-			setHeroName(start, HeroEnum::Tsunade); // TEMP: test with known hero
+			setHeroName(start, HeroEnum::MadaraMusou);
 			setHeroName(start + 1, HeroEnum::Itachi);
 			setHeroName(start + 2, HeroEnum::Sasuke);
 			setHeroName(start + 3, HeroEnum::Tobi);

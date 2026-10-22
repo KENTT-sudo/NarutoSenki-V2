@@ -9,7 +9,7 @@ function SelectLayer:init()
     if self.mode == GameMode.Clone or self.mode == GameMode.OneVsOne then
         self.enableCustomSelect = false
         self.is3v3Mode = false
-        self.is4v4Mode = false
+        self.is4v4Mode = (self.mode == GameMode.Boss) or (self.mode == GameMode.FourVsFour) or (self.mode == GameMode.HardCore_4Vs4)
     else
         self.is3v3Mode = self.mode == GameMode.Classic or self.mode ==
                              GameMode.RandomDeathmatch
@@ -215,7 +215,7 @@ function SelectLayer:init()
     self.selectHero = selectBtn._charName
 
     if self.enableCustomSelect then
-        if self.is3v3Mode or self.is4v4Mode then
+        if self.is3v3Mode or self.is4v4Mode or self.mode == GameMode.Boss then
             self:initCustomSelectMode()
         end
     end
