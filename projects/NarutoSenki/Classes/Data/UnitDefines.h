@@ -38,7 +38,7 @@ constexpr const char *kHeroList[] = {
 	HeroEnum::Tobi,
 	HeroEnum::Tobirama,
 	HeroEnum::Tsunade,
-	HeroEnum::MadaraMusou,
+	// HeroEnum::MadaraMusou,  // Boss Mode only, not random pick
 };
 
 constexpr size_t kHeroNum =  std::size(kHeroList);

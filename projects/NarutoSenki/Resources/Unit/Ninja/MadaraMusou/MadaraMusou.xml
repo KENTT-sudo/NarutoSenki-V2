@@ -80,27 +80,25 @@
         <data>
             <p type="attackType">MadaraMusou</p>
             <p type="attackValue">15000</p>
-            <p type="attackRangeX">250</p>
-            <p type="attackRangeY">300</p>
+            <p type="attackRangeX">350</p>
+            <p type="attackRangeY">350</p>
             <p type="cd">10</p>
             <p type="combatPoint">25000</p>
         </data>
         <frame>
-            <f>MadaraMusou_012</f>
+            <f>MadaraMusou_006</f>
             <e type="setDelay">5</e>
-            <f>MadaraMusou_013</f>
+            <f>MadaraMusou_007</f>
             <e type="setDelay">5</e>
-            <f>MadaraMusou_014</f>
+            <f>MadaraMusou_008</f>
+            <e type="setAttackBox">b_hit</e>
+            <e type="setBullet">PaperSrk</e>
             <e type="setDelay">10</e>
-            <f>MadaraMusou_015</f>
+            <f>MadaraMusou_009</f>
             <e type="setDelay">10</e>
-            <f>MadaraMusou_016</f>
-            <e type="setDelay">10</e>
-            <f>MadaraMusou_017</f>
-            <e type="setDelay">10</e>
-            <f>MadaraMusou_018</f>
-            <e type="setDelay">10</e>
-            <f>MadaraMusou_019</f>
+            <f>MadaraMusou_010</f>
+            <e type="setDelay">5</e>
+            <f>MadaraMusou_011</f>
         </frame>
     </action>
 
@@ -114,12 +112,19 @@
             <p type="combatPoint">40000</p>
         </data>
         <frame>
-            <f>MadaraMusou_013</f>
-            <e type="setSkillEffect">smk</e>
-            <e type="setDelay">30</e>
-            <f>MadaraMusou_016</f>
-            <e type="setDelay">30</e>
-            <f>MadaraMusou_019</f>
+            <f>MadaraMusou_006</f>
+            <e type="setDelay">5</e>
+            <f>MadaraMusou_007</f>
+            <e type="setDelay">5</e>
+            <f>MadaraMusou_008</f>
+            <e type="setAttackBox">ob_hit</e>
+            <e type="setBullet">PaperSrk</e>
+            <e type="setDelay">15</e>
+            <f>MadaraMusou_009</f>
+            <e type="setDelay">15</e>
+            <f>MadaraMusou_010</f>
+            <e type="setDelay">10</e>
+            <f>MadaraMusou_011</f>
         </frame>
     </action>
 
