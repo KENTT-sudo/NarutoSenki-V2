@@ -325,7 +325,11 @@ void Monster::dealloc()
 	}
 	if (getName() == SkillEnum::HiraishinMark)
 	{
-		_master->_isCanSkill1 = false;
+		if (_master && _master->isPlayer() && getGameLayer()->getHudLayer()->skill1Button)
+		{
+			getGameLayer()->getHudLayer()->skill1Button->unLock();
+		}
+		_master->_isCanSkill1 = true;
 		_master->setActionResume();
 		_master->scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
 
