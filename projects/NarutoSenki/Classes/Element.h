@@ -21,7 +21,7 @@ public:
 	CREATE_FUNC(Monster);
 
 protected:
-	void dieCleanup();
+	void dealloc();
 	void setAI(float dt);
 	void setResume();
 };
