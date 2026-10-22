@@ -37,7 +37,7 @@ class Tsunade : public Hero
 					}
 					return;
 				}
-				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored)
+				else if (_isCanSkill3 && _mainTarget->getDEF() < 5000 && !_isArmored && _monsterArray.size() < 10)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -183,6 +183,9 @@ class Tsunade : public Hero
 	{
 		auto clone = createSummonHero<Slug>(SummonEnum::Slug);
 		clone->_isArmored = true;
+		// 3x HP buff
+		clone->setMaxHPValue(clone->getMaxHP() * 3, false);
+		clone->setHPValue(clone->getMaxHP(), false);
 		return clone;
 	}
 

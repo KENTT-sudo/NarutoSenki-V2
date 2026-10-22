@@ -117,7 +117,7 @@ class Minato : public Hero
 						idle();
 					return;
 				}
-				else if (_isCanSkill3)
+				else if (_isCanSkill3 && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
@@ -165,7 +165,7 @@ class Minato : public Hero
 
 			if (isFreeState())
 			{
-				if (_isCanSkill3 && _mainTarget->isFlog())
+				if (_isCanSkill3 && _mainTarget->isFlog() && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);

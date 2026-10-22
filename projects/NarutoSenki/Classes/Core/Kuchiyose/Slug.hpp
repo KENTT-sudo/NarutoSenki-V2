@@ -5,51 +5,57 @@ class Slug : public Hero
 {
 	void perform() override
 	{
-		if (notFindFlog(0))
+		// 1. Find follow target (Tsunade, else nearest allied hero)
+		CharacterBase *followTarget = nullptr;
+		if (_master && _master->_state != State::DEAD)
+			followTarget = _master;
+		else
 		{
-			if (notFindTower(0))
-				_mainTarget = nullptr;
+			float bestDist = 999999;
+			for (auto hero : getGameLayer()->_CharacterArray)
+			{
+				if (hero == this || hero->_state == State::DEAD) continue;
+				if (hero->getGroup() != getGroup()) continue;
+				if (hero->isFlog() || hero->isTower()) continue;
+				float d = (hero->getPosition() - getPosition()).length();
+				if (d < bestDist) { bestDist = d; followTarget = hero; }
+			}
 		}
 
-		if (_mainTarget)
+		if (!followTarget) { stepOn(); return; }
+
+		// 2. Walk toward follow target
+		Vec2 sp = followTarget->getPosition() - getPosition();
+		if (abs(sp.x) > 64 || abs(sp.y) > 32)
 		{
-			Vec2 moveDirection;
-			Vec2 sp = getDistanceToTargetAndIgnoreOriginY();
+			walk(sp.getNormalized());
+			return;
+		}
 
-			if (_mainTarget->isTower() ||
-				_mainTarget->isFlog())
+		// 3. Heal if any nearby ally < 80% HP
+		if (isFreeState() && _isCanSkill2)
+		{
+			bool shouldHeal = false;
+			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (abs(sp.x) > 32 || abs(sp.y) > 32)
+				if (hero->_state == State::DEAD || hero->getGroup() != getGroup()) continue;
+				if (!hero->isPlayerOrCom()) continue;
+				Vec2 d = hero->getPosition() - getPosition();
+				if (abs(d.x) <= 128 && abs(d.y) <= 128 && hero->getHpPercent() < 0.8f)
 				{
-					moveDirection = sp.getNormalized();
-					walk(moveDirection);
+					shouldHeal = true;
+					break;
 				}
-				else
-				{
-					if (isFreeState())
-					{
-						if (_isCanSkill1)
-						{
-							attack(SKILL1);
-							scheduleOnce(schedule_selector(CharacterBase::enableSkill1), _sAttackCD1);
-						}
-						else if (_isCanSkill2)
-						{
-							attack(SKILL2);
-							scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
-						}
-						else
-						{
-							changeSide(sp);
-							attack(NAttack);
-						}
-					}
-				}
-
+			}
+			if (shouldHeal)
+			{
+				attack(SKILL2);
+				scheduleOnce(schedule_selector(CharacterBase::enableSkill2), _sAttackCD2);
 				return;
 			}
 		}
 
+		// 4. Wander
 		stepOn();
 	}
 };

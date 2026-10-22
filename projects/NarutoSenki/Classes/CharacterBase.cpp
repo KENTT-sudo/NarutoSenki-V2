@@ -2576,19 +2576,41 @@ void CharacterBase::healBuff(float dt)
 	}
 	else if (getName() == SummonEnum::Slug)
 	{
+		// Heal nearby allied heroes (3% max HP per tick)
+		for (auto hero : getGameLayer()->_CharacterArray)
+		{
+			if (getGroup() == hero->getGroup() && hero->isPlayerOrCom() && hero->_state != State::DEAD)
+			{
+				float distanceX = (hero->getPosition() - getPosition()).x;
+				float atkRangeX = 128 + getContentSize().width / 2;
+				if (abs(distanceX) <= atkRangeX && abs(hero->getPositionY() - getPositionY()) <= 128)
+				{
+					hero->increaseHpAndUpdateUI((uint32_t)(hero->getMaxHP() * 0.03f));
+					if (hero->isPlayer())
+						getGameLayer()->setHPLose(hero->getHpPercent());
+					if (hero->_isVisable)
+					{
+						Effect *tmpEffect = Effect::create("Kagura", hero);
+						if (hero->isPlayer()) tmpEffect->setOpacity(150);
+						tmpEffect->setPosition(Vec2(hero->getContentSize().width / 2, hero->getContentSize().height / 2));
+						hero->addChild(tmpEffect);
+					}
+				}
+			}
+		}
+		// Heal nearby flogs (3% max HP per tick)
 		auto list = isAkatsukiGroup()
-						? getGameLayer()->_AkatsukiFlogArray
-						: getGameLayer()->_KonohaFlogArray;
+				? getGameLayer()->_AkatsukiFlogArray
+				: getGameLayer()->_KonohaFlogArray;
 		for (auto flog : list)
 		{
 			if (getGroup() == flog->getGroup() && flog->_state != State::DEAD)
 			{
 				float distanceX = (flog->getPosition() - getPosition()).x;
 				float atkRangeX = 128 + getContentSize().width / 2;
-				if (abs(distanceX) <= atkRangeX &&
-					abs(flog->getPositionY() - getPositionY()) <= 128)
+				if (abs(distanceX) <= atkRangeX && abs(flog->getPositionY() - getPositionY()) <= 128)
 				{
-					flog->increaseHpAndUpdateUI(_healBuffValue);
+					flog->increaseHpAndUpdateUI((uint32_t)(flog->getMaxHP() * 0.03f));
 				}
 			}
 		}

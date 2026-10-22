@@ -23,7 +23,7 @@ class Kakashi : public Hero
 
 			if (isFreeState())
 			{
-				if (_isCanSkill3)
+				if (_isCanSkill3 && !_skillChangeBuffValue)
 				{
 					changeSide(sp);
 					attack(SKILL3);
