@@ -237,7 +237,7 @@
 	<action name="skill09">
 		<frame></frame>
 	</action>
-	<action name="skill10">
+	<action name="skill01">
 		<data>
 			<p type="attackType">Summon</p>
 			<p type="attackValue">0</p>
@@ -254,7 +254,7 @@
 		</frame>
 	</action>
 
-	<action name="skill11">
+	<action name="skill02">
 		<data>
 			<p type="attackType">Idle</p>
 			<p type="attackValue">0</p>
@@ -273,7 +273,7 @@
 		</frame>
 	</action>
 
-	<action name="skill12">
+	<action name="skill03">
 		<data>
 			<p type="attackType">Summon</p>
 			<p type="attackValue">0</p>
