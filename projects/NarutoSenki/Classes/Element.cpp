@@ -302,7 +302,7 @@ void Monster::setAI(float dt)
 void Monster::dealloc()
 {
 	// Fix Sai's crash: Just remove summons instantly without running death logic
-	if (getName() == "Mouse" || getName() == "Lion" || getName() == "Snake") {
+	if (getName().compare("Mouse") == 0 || getName().compare("Lion") == 0 || getName().compare("Snake") == 0) {
 		removeFromParent();
 		return;
 	}
