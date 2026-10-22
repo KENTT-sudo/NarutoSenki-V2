@@ -4,9 +4,14 @@
 
 class RikudoNarutoClone : public Hero
 {
+	float _kuramaCooldown = 0;
+
 	void perform() override
 	{
 		checkRetri();  // auto-use free Ramen at low HP
+
+		_kuramaCooldown -= 0.1f;
+		if (_kuramaCooldown < 0) _kuramaCooldown = 0;
 
 		if (notFindHero(0))
 		{
@@ -23,6 +28,26 @@ class RikudoNarutoClone : public Hero
 		{
 			Vec2 moveDirection;
 			Vec2 sp = getDistanceToTarget();
+
+			// Auto-summon Kurama via Skill 5 (30s cooldown, permanent Kurama via Skill 2)
+			if (_kuramaCooldown <= 0 && !_isControlled && !_isArmored && getGameLayer()->_isOugis2Game
+				&& !_mainTarget->isTower() && !_mainTarget->isFlog() && abs(sp.x) < 128)
+			{
+				if (_isCanSkill2)
+				{
+					changeSide(sp);
+					attack(SKILL2);
+					_kuramaCooldown = 30.0f;
+					return;
+				}
+				else if (_isCanOugis2)
+				{
+					changeSide(sp);
+					attack(OUGIS2);
+					_kuramaCooldown = 30.0f;
+					return;
+				}
+			}
 
 			if (_mainTarget->isTower() ||
 				_mainTarget->isFlog())
