@@ -14,14 +14,14 @@ public:
 	void onInitHeros()
 	{
 		initHeros(10, 5);
-		if (heroDataVector.size() >= 5)
+		if (getHerosArray().size() >= 5)
 		{
-			int start = heroDataVector.size() - 5;
-			heroDataVector[start].name = HeroEnum::MadaraMusou;
-			heroDataVector[start + 1].name = HeroEnum::Itachi;
-			heroDataVector[start + 2].name = HeroEnum::Sasuke;
-			heroDataVector[start + 3].name = HeroEnum::Tobi;
-			heroDataVector[start + 4].name = HeroEnum::Pain;
+			int start = getHerosArray().size() - 5;
+			setHeroName(start, HeroEnum::MadaraMusou);
+			setHeroName(start + 1, HeroEnum::Itachi);
+			setHeroName(start + 2, HeroEnum::Sasuke);
+			setHeroName(start + 3, HeroEnum::Tobi);
+			setHeroName(start + 4, HeroEnum::Pain);
 		}
 	}
 

@@ -60,8 +60,8 @@ class IGameModeHandler
 	friend class GameModeLayer;
 	friend class SelectLayer;
 
-private:
-	vector<HeroData> heroDataVector;
+private:protected:
+private:vector<HeroData> heroDataVector;
 	// map
 	int mapId = 0;
 	// tower
@@ -123,6 +123,7 @@ public:
 		}
 	}
 	inline const vector<HeroData> &getHerosArray() { return heroDataVector; }
+	inline void setHeroName(size_t index, const char *name) { if (index < heroDataVector.size()) heroDataVector[index].name = name; }
 
 protected:
 	// IGameModeHandler()
