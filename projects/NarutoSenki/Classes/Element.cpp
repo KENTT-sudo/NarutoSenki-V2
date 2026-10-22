@@ -420,7 +420,7 @@ void Monster::setResume()
 {
 	if (getSecMaster())
 	{
-		getSecMaster()->dieCleanup();
+		static_cast<Monster*>(getSecMaster())->dieCleanup();
 	}
 	else
 	{
