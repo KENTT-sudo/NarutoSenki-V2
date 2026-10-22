@@ -137,6 +137,7 @@ public:
 		is("Tobi") 							ptr = new Tobi();
 		is("Tobirama") 						ptr = new Tobirama();
 		is("Tsunade") 						ptr = new Tsunade();
+		is("MadaraMusou") 				ptr = new MadaraMusou();
 		is_or("Roshi", "Han")				ptr = new Guardian();
 		else								ptr = new DefaultAI();
 

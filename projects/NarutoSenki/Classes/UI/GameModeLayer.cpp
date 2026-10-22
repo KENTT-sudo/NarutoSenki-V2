@@ -141,7 +141,7 @@ void GameModeLayer::initModeData()
 	}
 
 	// init in developtment game modes
-	modes[GameMode::Boss].isLocked = true;
+	modes[GameMode::Boss].isLocked = !UserDefault::getInstance()->getBoolForKey("boss_mode_unlocked", false);
 	modes[GameMode::Deathmatch].isLocked = true;
 	modes[GameMode::Deathmatch].useMask2 = true;
 

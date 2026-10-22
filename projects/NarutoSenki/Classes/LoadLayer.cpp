@@ -180,6 +180,10 @@ void LoadLayer::perloadCharIMG(const string &name)
 	{
 		addSprites(mk_kuchiyose_plist("Slug"));
 	}
+	else if (name == HeroEnum::MadaraMusou)
+	{
+		// Madara's sprites preloaded via main load (Unit/Ninja/MadaraMusou/MadaraMusou.plist)
+	}
 	else if (name == HeroEnum::Kakashi)
 	{
 		addSprites(mk_kuchiyose_plist("DogWall"));

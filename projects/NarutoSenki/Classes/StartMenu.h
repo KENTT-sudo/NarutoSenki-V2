@@ -97,4 +97,7 @@ private:
 	void onExit();
 
 	vector<MenuButton *> _menuArray;
+
+    int _girlTapCount = 0;
+    void onGirlNarutoTapped();
 };

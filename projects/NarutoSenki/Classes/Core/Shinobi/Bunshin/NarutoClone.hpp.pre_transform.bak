@@ -1,0 +1,74 @@
+#pragma once
+#include "Hero.hpp"
+#include <cstdlib>
+
+class NarutoClone : public Hero
+{
+    void attackRandomSkill()
+    {
+        ABType choices[] = {SKILL1, SKILL3, OUGIS1, OUGIS2};
+        int start = std::rand() % 4;
+
+        for (int i = 0; i < 4; ++i)
+        {
+            ABType type = choices[(start + i) % 4];
+            bool enabled = false;
+
+            switch (type)
+            {
+                case SKILL1: enabled = _isCanSkill1; break;
+                case SKILL3: enabled = _isCanSkill3; break;
+                case OUGIS1: enabled = _isCanOugis1; break;
+                case OUGIS2: enabled = _isCanOugis2; break;
+                default: break;
+            }
+
+            if (enabled)
+            {
+                attack(type);
+                return;
+            }
+        }
+
+        attack(NAttack);
+    }
+
+
+	void perform() override
+	{
+		if (notFindFlog(0))
+		{
+			if (notFindHero(0))
+			{
+				if (notFindTower(0))
+				{
+					_mainTarget = nullptr;
+				}
+			}
+		}
+
+		if (_mainTarget)
+		{
+			Vec2 moveDirection;
+			Vec2 sp = getDistanceToTarget();
+
+			if (abs(sp.x) > 32 || abs(sp.y) > 32)
+			{
+				moveDirection = sp.getNormalized();
+				walk(moveDirection);
+			}
+			else
+			{
+				if (isFreeState())
+				{
+					changeSide(sp);
+					attackRandomSkill();
+				}
+			}
+
+			return;
+		}
+
+		stepOn();
+	}
+};

@@ -63,6 +63,19 @@ end
 function GameScene:onLogoClick()
     self.cheats = self.cheats + 1
 
+    -- Easter Egg: Swap to girl logo after 5 taps
+    if self.cheats == 5 then
+        -- Change the logo image to the girl
+        local girl_logo = cc.Sprite:create("logo_girl.png")
+        if girl_logo then
+            self.logoMenu:removeAllChildren()
+            self.logoMenu:addChild(girl_logo)
+        end
+        -- Unlock Boss Mode permanently
+        cc.UserDefault:getInstance():setBoolForKey("boss_mode_unlocked", true)
+        cc.UserDefault:getInstance():flush()
+    end
+
     if self.cheats == 7 then
         audio.stopAllSounds()
         self.logoMenu:removeFromParent()

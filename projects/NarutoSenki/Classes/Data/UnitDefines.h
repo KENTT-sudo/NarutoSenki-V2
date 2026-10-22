@@ -38,6 +38,7 @@ constexpr const char *kHeroList[] = {
 	HeroEnum::Tobi,
 	HeroEnum::Tobirama,
 	HeroEnum::Tsunade,
+	HeroEnum::MadaraMusou,
 };
 
 constexpr size_t kHeroNum =  std::size(kHeroList);
