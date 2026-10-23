@@ -388,12 +388,7 @@ void GearLayer::updateGearList()
 			btn = GearButton::create("value_500.png");
 		}
 
-		bool isBuyed = false;
-		for (auto gear : getGameLayer()->currentPlayer->getGearArray())
-		{
-			if (static_cast<uint32_t>(gear) == i)
-				isBuyed = true;
-		}
+		bool isBuyed = false; // MOD: Allow buying duplicates
 
 		if (currentGear == GearType::None && !isBuyed)
 		{

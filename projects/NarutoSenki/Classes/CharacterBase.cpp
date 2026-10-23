@@ -1695,9 +1695,9 @@ bool CharacterBase::setGear(GearType type)
 			break;
 		case GearType::Gear05:
 			isGearCD = true;
-			_sAttackCD1 -= 5;
-			_sAttackCD2 -= 5;
-			_sAttackCD3 -= 5;
+			if (_sAttackCD1 >= 5) _sAttackCD1 -= 5; else _sAttackCD1 = 0;
+                                        if (_sAttackCD2 >= 5) _sAttackCD2 -= 5; else _sAttackCD2 = 0;
+                                        if (_sAttackCD3 >= 5) _sAttackCD3 -= 5; else _sAttackCD3 = 0;
 
 			if (isPlayer())
 			{
@@ -3692,9 +3692,9 @@ void CharacterBase::setTransform()
 
 	if (isGearCD)
 	{
-		_sAttackCD1 -= 5;
-		_sAttackCD2 -= 5;
-		_sAttackCD3 -= 5;
+		if (_sAttackCD1 >= 5) _sAttackCD1 -= 5; else _sAttackCD1 = 0;
+                                        if (_sAttackCD2 >= 5) _sAttackCD2 -= 5; else _sAttackCD2 = 0;
+                                        if (_sAttackCD3 >= 5) _sAttackCD3 -= 5; else _sAttackCD3 = 0;
 	}
 
 	if (isPlayer())
