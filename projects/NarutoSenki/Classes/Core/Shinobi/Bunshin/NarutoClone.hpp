@@ -224,7 +224,8 @@ class NarutoClone : public Hero
 
         void perform() override
         {
-                checkRetri();  // auto-use free Ramen at low HP
+            if (_kuramaCooldown > 0) _kuramaCooldown -= 0.016f; // MOD: Timer countdown
+            checkRetri();  // auto-use free Ramen at low HP
 
                 if (notFindHero(0))
                 {
@@ -243,10 +244,16 @@ class NarutoClone : public Hero
                         Vec2 sp = getDistanceToTarget();
 
                         if (abs(sp.x) > 32 || abs(sp.y) > 32)
-                        {
-                                moveDirection = sp.getNormalized();
-                                walk(moveDirection);
-                        }
+        {
+            // MOD: Rikudo Clone uses long-range skills instead of just walking
+            if (getName() == HeroEnum::RikudoNaruto && isFreeState())
+            {
+                if (_isCanSkill1) { changeSide(sp); attack(SKILL1); return; }
+                if (_isCanSkill3) { changeSide(sp); attack(SKILL3); return; }
+            }
+            moveDirection = sp.getNormalized();
+            walk(moveDirection);
+        }
                         else
                         {
                                 if (isFreeState())

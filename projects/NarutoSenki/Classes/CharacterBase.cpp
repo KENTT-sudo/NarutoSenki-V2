@@ -1664,7 +1664,7 @@ bool CharacterBase::setGear(GearType type)
 	else
 		gearCost = 1000;
 
-	if ((isPlayer() ? getGearArray().size() < 10 : getGearArray().size() < 3) && (isPlayer() || getCoin() >= gearCost))
+	if ((isPlayer() ? getGearArray().size() < 10 : getGearArray().size() < 10) && (isPlayer() || getCoin() >= gearCost))
 	{
 		getGearArray().push_back(type);
 

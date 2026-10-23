@@ -58,7 +58,7 @@ class Tenten : public Hero
 
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_skillChangeBuffValue && !_isControlled)
+				else if (false && !_isHealing && !_skillChangeBuffValue && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();

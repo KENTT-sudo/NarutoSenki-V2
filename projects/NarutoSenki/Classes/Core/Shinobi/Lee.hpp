@@ -216,7 +216,7 @@ class Lee : public Hero
 					attack(SKILL1);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
+				else if (false && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -320,7 +320,7 @@ class Lee : public Hero
 					changeSide(sp);
 					attack(OUGIS2);
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled)
+				else if (false && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();

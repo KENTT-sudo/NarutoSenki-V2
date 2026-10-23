@@ -40,7 +40,7 @@ class Choji : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled && !_isArmored)
+				else if (false && !_isHealing && !_isControlled && !_isArmored)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();

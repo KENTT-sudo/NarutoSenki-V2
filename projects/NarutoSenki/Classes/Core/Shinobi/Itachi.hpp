@@ -43,7 +43,7 @@ class Itachi : public Hero
 
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
+				else if (false && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();

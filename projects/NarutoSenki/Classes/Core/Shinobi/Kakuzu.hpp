@@ -162,7 +162,7 @@ class Kakuzu : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 5000 && !_isHealing && !_isControlled)
+				else if (false && !_isHealing && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();

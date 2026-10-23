@@ -103,7 +103,7 @@ class Hidan : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isControlled && !_isArmored && !_isFound)
+				else if (false && !_isHealing && !_isControlled && !_isArmored && !_isFound)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -284,21 +284,14 @@ class Hidan : public Hero
 
 		if (_isCounter && attacker->isNotGuardian())
 		{
-			if (attacker->getMaster() && attacker->getMaster()->getState() != State::DEAD)
-			{
-				attacker->getMaster()->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
-			}
-			else if (!attacker->getMaster())
-			{
-				if (attacker->getState() != State::DEAD)
-				{
-					attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
-				}
-			}
+			if (attacker->getState() != State::DEAD)
+                        {
+                            attacker->setDamage(this, attacker->getEffectType(), attacker->_attackValue, attacker->_isFlipped);
+                        }
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->getState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}
@@ -338,7 +331,7 @@ class Hidan : public Hero
 
 			for (auto hero : getGameLayer()->_CharacterArray)
 			{
-				if (getGroup() != hero->getGroup() && hero->isPlayerOrCom() && hero->getState() != State::DEAD)
+				if (getGroup() != hero->getGroup() && hero->getState() != State::DEAD)
 				{
 					hero->setDamage(this, attacker->getEffectType(), attacker->_attackValue / 2, attacker->_isFlipped);
 				}

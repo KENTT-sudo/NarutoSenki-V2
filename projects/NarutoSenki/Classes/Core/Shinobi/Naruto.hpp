@@ -70,7 +70,7 @@ class Naruto : public Hero
 					attack(SKILL2);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
+				else if (false && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -264,7 +264,7 @@ class Naruto : public Hero
 					attack(SKILL3);
 					return;
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
+				else if (false && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
@@ -452,7 +452,7 @@ class Naruto : public Hero
 				{
 					useGear(GearType::Gear03);
 				}
-				else if (enemyCombatPoint > friendCombatPoint && abs(enemyCombatPoint - friendCombatPoint) > 3000 && !_isHealing && !_isArmored && !_isControlled)
+				else if (false && !_isHealing && !_isArmored && !_isControlled)
 				{
 					if (abs(sp.x) < 160)
 						stepBack2();
