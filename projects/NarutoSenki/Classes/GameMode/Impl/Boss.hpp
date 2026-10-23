@@ -26,7 +26,7 @@ public:
             setHeroName(0, HeroEnum::Naruto);   // Player 1
             setHeroName(1, HeroEnum::Sasuke);   // Player 2
             setHeroName(2, HeroEnum::Sakura);   // Player 3
-            setHeroName(3, HeroEnum::Obito);  // Enemy Boss
+            setHeroName(3, HeroEnum::Tsunade);  // Enemy Boss
         }
     }
 

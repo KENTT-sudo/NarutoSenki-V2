@@ -164,7 +164,7 @@ class Sai : public Hero
 
 	void changeAction() override
 	{
-		if (_skillChangeBuffValue == 17)
+		if (false && _skillChangeBuffValue == 17) // TEMP DISABLED
 		{
 			setNAttackAction(createAnimation(skillSPC1Array, 10, false, true));
 		}
@@ -191,7 +191,7 @@ class Sai : public Hero
 
 	void resumeAction(float dt) override
 	{
-		if (_skillChangeBuffValue == 17)
+		if (false && _skillChangeBuffValue == 17) // TEMP DISABLED
 		{
 			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 		}
@@ -229,7 +229,7 @@ class Sai : public Hero
 
 		unschedule(schedule_selector(Sai::resumeAction));
 
-		if (_skillChangeBuffValue == 17)
+		if (false && _skillChangeBuffValue == 17) // TEMP DISABLED
 		{
 			setNAttackAction(createAnimation(nattackArray, 10, false, true));
 		}
