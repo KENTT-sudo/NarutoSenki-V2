@@ -521,7 +521,8 @@ void GameOver::onLeft(Ref *sender)
 	SimpleAudioEngine::sharedEngine()->playEffect("Audio/Menu/confirm.ogg");
 
 	getGameLayer()->_isExiting = true;
-	Director::sharedDirector()->popScene();
+    Director::sharedDirector()->getScheduler()->unscheduleAllForTarget(getGameLayer()); // MOD: Stop AI timers
+    Director::sharedDirector()->popScene();
 }
 
 void GameOver::onCancel(Ref *sender)

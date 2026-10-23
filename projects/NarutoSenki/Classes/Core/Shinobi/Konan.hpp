@@ -3,9 +3,11 @@
 
 class Konan : public Hero
 {
+    float _konanBuffCooldown = 0.0f;
 	void perform() override
-	{
-		_mainTarget = nullptr;
+        {
+            if (_konanBuffCooldown > 0) _konanBuffCooldown -= 0.016f;
+            _mainTarget = nullptr;
 		findHeroHalf();
 
 		tryBuyGear(GearType::Gear03, GearType::Gear05, GearType::Gear02);
@@ -21,11 +23,12 @@ class Konan : public Hero
 
 			if (isFreeState())
 			{
-				if (_isCanSkill1 && !_isArmored)
+				if (_isCanSkill1 && !_isArmored && _konanBuffCooldown <= 0)
 				{
 					changeSide(sp);
 					attack(SKILL1);
-					return;
+                    _konanBuffCooldown = 10.0f;
+                    return;
 				}
 				else if (_isCanOugis2 && !_isControlled && getGameLayer()->_isOugis2Game && _mainTarget->getDEF() < 5000 && !_mainTarget->_isArmored && _mainTarget->getState() != State::KNOCKDOWN && !_mainTarget->_isSticking && !_isArmored)
 				{

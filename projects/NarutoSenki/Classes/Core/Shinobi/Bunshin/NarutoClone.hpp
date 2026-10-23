@@ -207,7 +207,7 @@ class NarutoClone : public Hero
                 case SKILL1: enabled = _isCanSkill1; break;
                 case SKILL3: enabled = _isCanSkill3; break;
                 case OUGIS1: enabled = _isCanOugis1; break;
-                case OUGIS2: enabled = _isCanOugis2; break;
+                case OUGIS2: enabled = _isCanOugis2 && getName() != HeroEnum::RikudoNaruto; break;
                 default: break;
             }
 
@@ -243,10 +243,19 @@ class NarutoClone : public Hero
                         Vec2 moveDirection;
                         Vec2 sp = getDistanceToTarget();
 
-                        if (abs(sp.x) > 32 || abs(sp.y) > 32)
+                        // MOD: Force Kurama summon once in Rikudo mode, regardless of distance
+            if (getName() == HeroEnum::RikudoNaruto && _kuramaCooldown <= 0 && _isCanSkill2 && isFreeState())
+            {
+                changeSide(sp);
+                attack(SKILL2);
+                _kuramaCooldown = 30.0f;
+                return;
+            }
+
+            if (abs(sp.x) > 32 || abs(sp.y) > 32)
         {
             // MOD: Rikudo Clone uses long-range skills instead of just walking
-            if (getName() == HeroEnum::RikudoNaruto && isFreeState())
+            if (getName() == HeroEnum::RikudoNaruto && isFreeState() && !_mainTarget->isTower())
             {
                 if (_isCanSkill1) { changeSide(sp); attack(SKILL1); return; }
                 if (_isCanSkill3) { changeSide(sp); attack(SKILL3); return; }
@@ -255,19 +264,16 @@ class NarutoClone : public Hero
             walk(moveDirection);
         }
                         else
-                        {
-                                if (isFreeState())
-                                {
-                                        changeSide(sp);
-                                        if (getName() == HeroEnum::RikudoNaruto && _kuramaCooldown <= 0 && _isCanSkill2)
-                                        {
-                                                attack(SKILL2);
-                                                _kuramaCooldown = 30.0f;
-                                        }
-                                        else
-                                        {
-                                                attackRandomSkill();
-                                        }
+        {
+            if (isFreeState())
+            {
+                changeSide(sp);
+                if (_mainTarget->isTower())
+                {
+                    attack(NAttack);
+                    return;
+                }
+                                        attackRandomSkill();
                                 }
                         }
 

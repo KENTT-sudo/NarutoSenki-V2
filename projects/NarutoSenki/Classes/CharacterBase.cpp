@@ -1714,8 +1714,8 @@ bool CharacterBase::setGear(GearType type)
 			_isCanGear06 = true;
 			break;
 		case GearType::Gear07:
-			gearRecoverValue = 3000;
-			getGameLayer()->getHudLayer()->item1Button->setCD(3000);
+                    gearRecoverValue = 3000;
+                    getGameLayer()->getHudLayer()->item1Button->setCD(5000);
 			getGameLayer()->getHudLayer()->item1Button->_isColdChanged = true;
 			break;
 		case GearType::Gear08:
@@ -4733,7 +4733,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 				distance = sp.getLength();
 			}
 
-			if (abs(sp.x) < (searchRange ? searchRange : kAttackRange))
+			if (abs(sp.x) < (searchRange ? searchRange : kAttackRange) || target->isClone())
 			{
 				if (target->_isTaunt)
 				{
@@ -4804,9 +4804,9 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 
 		sp = target->getPosition() - getPosition();
 		distance = sp.getLength();
-		if (abs(sp.x) < kAttackRange)
-		{
-			if (target->isNotClone() && target->isNotSummon())
+		if (abs(sp.x) < kAttackRange || target->isClone())
+        {
+            if (target->isNotClone() && target->isNotSummon())
 			{
 				int baseSkillCombatPoint = 0;
 
