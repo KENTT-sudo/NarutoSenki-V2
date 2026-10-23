@@ -523,8 +523,10 @@ public:
 			if (_shadow)
 				_shadow->removeFromParent();
 
-			if (_master)
-				_master->removeMon(this);
+			if (_master) {
+                    auto& arr = getGameLayer()->_CharacterArray;
+                    if (std::find(arr.begin(), arr.end(), _master) != arr.end()) _master->removeMon(this);
+                }
 
 			removeFromParent();
 		}
