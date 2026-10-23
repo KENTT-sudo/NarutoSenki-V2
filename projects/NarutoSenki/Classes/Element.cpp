@@ -327,7 +327,10 @@ void Monster::dealloc()
 	{
 		if (_master && _master->isPlayer() && getGameLayer()->getHudLayer()->skill1Button)
 		{
-			getGameLayer()->getHudLayer()->skill1Button->unLock();
+			auto btn = getGameLayer()->getHudLayer()->skill1Button;
+			btn->unLock();
+			btn->setTimeCount(0); // Force clear CD
+			btn->_isLock = false;
 		}
 		_master->_isCanSkill1 = true;
 		_master->setActionResume();

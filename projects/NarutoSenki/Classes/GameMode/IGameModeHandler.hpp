@@ -207,10 +207,12 @@ protected:
 		enemyCount = enemyCount > kMaxCharCount ? kMaxCharCount : enemyCount;
 		setRand();
 		int team = random(2);
-		if (_forcePlayerGroup)
+		if (_forcePlayerGroup) {
 			playerGroup = _forcedPlayerGroup;
-		else
+			team = (playerGroup == Group::Konoha) ? 0 : 1; // Force team assignment
+		} else {
 			playerGroup = team > 0 ? Group::Akatsuki : Group::Konoha;
+		}
 		this->gd.playerGroup = playerGroup;
 		this->playerGroup = playerGroup;
 		uint8_t totalCount = playerCount + enemyCount;

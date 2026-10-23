@@ -145,7 +145,7 @@
 			<f>Sai_Skill02_06</f>
 			<f>Sai_Skill02_07</f>
 			<e type="setSound">Audio/Sai/ink_tiger.ogg</e>
-			<e type="setMon">Tiger</e>
+			<!-- <e type="setMon">Tiger</e> -->
 		</frame>
 	</action>
 
@@ -162,7 +162,7 @@
 			<f>Sai_Skill04_01</f>
 			<e type="setSound">Audio/Sai/sai_skill4.ogg</e>
 			<f>Sai_Skill04_02</f>
-			<e type="setMon">InkBird</e>
+			<!-- <e type="setMon">InkBird</e> -->
 			<f>Sai_Skill04_03</f>
 			<f>Sai_Skill04_04</f>
 			<e type="setAttackBox">bf_hit</e>
@@ -221,7 +221,7 @@
 			<f>Sai_Skill05_007</f>
 			<f>Sai_Skill05_008</f>
 			<e type="setSound">Audio/Sai/sai_skill5.ogg</e>
-			<e type="setMon">InkDragon</e>
+			<!-- <e type="setMon">InkDragon</e> -->
 			<e type="setCommand">reInvincible</e>
 		</frame>
 	</action>
@@ -250,7 +250,7 @@
 			<f>Sai_Skill10_02</f>
 			<f>Sai_Skill10_03</f>
 			<f>Sai_Skill10_04</f>
-			<e type="setMon">Snake</e>
+			<!-- <e type="setMon">Snake</e> -->
 		</frame>
 	</action>
 
@@ -288,7 +288,7 @@
 			<f>Sai_Skill12_04</f>
 			<f>Sai_Skill12_05</f>
 			<f>Sai_Skill12_06</f>
-			<e type="setMon">Mouse</e>
+			<!-- <e type="setMon">Mouse</e> -->
 		</frame>
 	</action>
 </unit>
