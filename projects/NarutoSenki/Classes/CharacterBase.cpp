@@ -1778,9 +1778,9 @@ void CharacterBase::useGear(GearType type)
 		scheduleOnce(schedule_selector(CharacterBase::enableGear03), 15.0f);
 	}
 	else if (type == GearType::Gear06)
-	{
-		_isCanGear06 = false;
-		scheduleOnce(schedule_selector(CharacterBase::enableGear06), 15.0f);
+    {
+        _isCanGear06 = false;
+        scheduleOnce(schedule_selector(CharacterBase::enableGear06), 5.0f);
 
 		if (!_isInvincible && !_isArmored)
 		{
@@ -4621,7 +4621,9 @@ void CharacterBase::dead()
 	{
 		unschedule(schedule_selector(CharacterBase::removeClone));
 		setSkillEffect("smk");
-		dealloc();
+            auto call = CallFunc::create(std::bind(&CharacterBase::dealloc, this));
+            auto seq = Sequence::create(DelayTime::create(0.1f), call, nullptr);
+            runAction(seq);
 	}
 }
 
