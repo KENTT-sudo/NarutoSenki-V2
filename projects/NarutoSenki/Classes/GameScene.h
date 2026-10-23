@@ -16,4 +16,5 @@ public:
 	}
 
 	CREATE_FUNC(GameScene);
+        static GameScene* createNSWOS();
 };
