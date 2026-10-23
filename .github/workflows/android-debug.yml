@@ -1,4 +1,6 @@
-name: Build Naruto Senki APK
+git add .github/workflows/android-debug.yml projects/NarutoSenki/proj.android-studio/gradle.properties
+git commit -m "CI: also upload raw libcocos2dcpp.so; revert Termux-only aapt2 override"
+git pushname: Build Naruto Senki APK
 
 on:
   push:
