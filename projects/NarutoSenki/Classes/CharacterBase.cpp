@@ -543,10 +543,13 @@ void CharacterBase::acceptAttack(Ref *object)
 								}
 
 								if (isPlayer())
-								{
-									doAI();
-								}
-								changeGroup();
+                    {
+                        doAI();
+                        // MOD: Lock player controls when hit by Enemy Ino
+                        getGameLayer()->getHudLayer()->_isAllButtonLocked = true;
+                        getGameLayer()->controlChar = nullptr;
+                    }
+                    changeGroup();
 							}
 						}
 					}
@@ -4484,10 +4487,11 @@ void CharacterBase::dead()
 		changeGroup();
 
 		if (isPlayer())
-		{
-			_isAI = false;
-			getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
-		}
+                    {
+                        _isAI = false;
+                        getGameLayer()->getHudLayer()->_isAllButtonLocked = false;
+                        getGameLayer()->controlChar = this; // MOD: Give control back
+                    }
 
 		if (_controller->_state != State::DEAD)
 		{
@@ -4653,6 +4657,14 @@ void CharacterBase::checkActionFinish(float dt)
 
 void CharacterBase::dealloc()
 {
+    if (getGameLayer())
+    {
+        // MOD: Safely erase dead characters and flogs to fix memory leaks and crashes
+        std::erase(getGameLayer()->_CharacterArray, this);
+        std::erase(getGameLayer()->_KonohaFlogArray, this);
+        std::erase(getGameLayer()->_AkatsukiFlogArray, this);
+    }
+    this->removeFromParent();
 }
 
 void CharacterBase::reborn(float dt)
