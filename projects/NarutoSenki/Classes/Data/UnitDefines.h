@@ -36,6 +36,7 @@ constexpr const char *kHeroList[] = {
 	HeroEnum::Suigetsu,
 	HeroEnum::Tenten,
 	HeroEnum::Tobi,
+	HeroEnum::Obito,
 	HeroEnum::Tobirama,
 	HeroEnum::Tsunade,
 	// HeroEnum::MadaraMusou,  // Boss Mode only, not random pick

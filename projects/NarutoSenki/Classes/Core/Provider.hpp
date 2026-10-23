@@ -136,6 +136,7 @@ public:
 		is("Suigetsu") 						ptr = new Suigetsu();
 		is("Tenten") 						ptr = new Tenten();
 		is("Tobi") 							ptr = new Tobi();
+		is("Obito") 				ptr = new Tobi();
 		is("Tobirama") 						ptr = new Tobirama();
 		is("Tsunade") 						ptr = new Tsunade();
 		is("MadaraMusou") 				ptr = new MadaraMusou();
