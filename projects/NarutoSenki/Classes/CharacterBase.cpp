@@ -4713,7 +4713,7 @@ CharacterBase::findEnemyBy(const vector<T *> &list, int searchRange, bool master
 	Vec2 sp;
 	bool findSome = false;
 
-	for (auto target : listCopy)
+	for (auto target : list)
 	{
 		if (target->_state == State::DEAD ||
 			target->_isVisable == false ||
@@ -4799,7 +4799,6 @@ typename std::enable_if<std::is_base_of<CharacterBase, T>::value, bool>::type
 // template find ememy 2
 CharacterBase::findEnemy2By(const vector<T *> &list)
 {
-    auto listCopy = list; // MOD: Safe copy to prevent crash
 	float distance;
 	float curDistance = 0;
 	Vec2 sp;
@@ -4808,7 +4807,7 @@ CharacterBase::findEnemy2By(const vector<T *> &list)
 	enemyCombatPoint = 0;
 	friendCombatPoint = 0;
 
-	for (auto target : listCopy)
+	for (auto target : list)
 	{
 		if (target->_state == State::DEAD ||
 			target->_isVisable == false ||
@@ -4900,7 +4899,7 @@ CharacterBase::findTargetEnemyBy(const vector<T *> &list, bool isTowerDected)
 	Vec2 sp;
 	bool findSome = false;
 
-	for (auto target : listCopy)
+	for (auto target : list)
 	{
 		if (getGroup() != target->getGroup() &&
 			target->isNotKugutsu() &&
@@ -5244,7 +5243,7 @@ template <typename T>
 typename std::enable_if<std::is_base_of<CharacterBase, T>::value, void>::type
 CharacterBase::changeGroupBy(const vector<T *> &list)
 {
-	for (auto target : listCopy)
+	for (auto target : list)
 	{
 		if (target->_hpBar == nullptr)
 			continue;
