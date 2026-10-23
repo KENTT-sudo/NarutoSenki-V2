@@ -9,3 +9,7 @@ bool GameScene::init()
 
 	return true;
 }
+
+GameScene* GameScene::createNSWOS() {
+    return GameScene::create();
+}

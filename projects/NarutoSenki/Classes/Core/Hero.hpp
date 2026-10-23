@@ -177,6 +177,9 @@ public:
 		tmpAction = (CCArray *)(animationArray->objectAtIndex(10));
 		tmpData = (CCArray *)(tmpAction->objectAtIndex(0));
 		readData(tmpData, _sAttackType3, tmpValue, _sAttackRangeX3, _sAttackRangeY3, _sAttackCD3, _sAttackCombatPoint3);
+        _sAttackCD1 = 0;
+        _sAttackCD2 = 0;
+        _sAttackCD3 = 0;
 		setSAttackValue3(tmpValue);
 		skill3Array = (CCArray *)(tmpAction->objectAtIndex(1));
 		skill3Array->retain();
