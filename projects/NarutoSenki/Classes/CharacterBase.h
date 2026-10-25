@@ -587,17 +587,19 @@ protected:
 	bool notFindFlogHalf() { return !findEnemy2(Role::Flog); }
 	bool notFindTowerHalf() { return !findEnemy2(Role::Tower); }
 	// AI extensions
-	void tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
-		if (getCoin() >= 500 && getGearArray().size() < 3 && !_isControlled && getGameLayer()->_enableGear)
-		{
-			if (getGearArray().size() == 0)
-				setGear(gear1);
-			else if (getGearArray().size() == 1)
-				setGear(gear2);
-			else if (getGearArray().size() == 2)
-				setGear(gear3);
-		}
-	}
+        void tryBuyGear(GearType gear1, GearType gear2, GearType gear3) {
+    // We changed the limit to 10 and removed the coin check so the AI can buy freely
+    if (getGearArray().size() < 10 && !_isControlled && getGameLayer()->_enableGear)
+    {
+        if (getGearArray().size() == 0) setGear(gear1);
+        else if (getGearArray().size() == 1) setGear(gear2);
+        else if (getGearArray().size() == 2) setGear(gear3);
+        
+        // CUSTOM AI GEARS:
+        else if (getGearArray().size() == 3) setGear(GearType::Gear07); // 1x UI Gear 8 (Ramen Regen)
+        else if (getGearArray().size() >= 4 && getGearArray().size() < 10) setGear(GearType::Gear08); // 6x UI Gear 9 (6000 HP)
+    }
+}
 	void tryUseGear6() {
 		if (_isCanGear06)
 		{
