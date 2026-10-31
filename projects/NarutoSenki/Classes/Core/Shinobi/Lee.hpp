@@ -176,9 +176,11 @@ class Lee : public Hero
 		// 	setHPValue(hp > 1000 ? hp - 1000 : 100);
 		// }
 		if (htLv >= 5)
-		{
-			setHPValue(hp > 200 ? hp - 200 : 100);
-		}
+                {
+                        setHPValue(hp > 200 ? hp - 200 : 100);
+                // NEW CODE: Increase attack by 10 every second
+                        setNAttackValue(getNAttackValue() + 10);
+                }
 		else if (htLv >= 4)
 		{
 			setHPValue(hp > 150 ? hp - 150 : 100);
